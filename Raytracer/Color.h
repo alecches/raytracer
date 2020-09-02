@@ -11,5 +11,8 @@ public:
 	Color operator*(Color);
 	Color operator*(double);
 	bool operator==(Color);
+
+	double clamp(double);
+	void clampRGB();
 };
 

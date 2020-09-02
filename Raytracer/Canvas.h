@@ -1,9 +1,10 @@
 #pragma once
 #include "Color.h"
+#include <string>
 
 class Canvas
 {
-private:	
+private:
 	Color* pixels;
 
 public:
@@ -11,5 +12,7 @@ public:
 	Canvas(int, int);
 	Color getPixel(int, int);
 	void writePixel(int, int, Color);
+	std::string toPPM();
+	double round(double);
 };
 

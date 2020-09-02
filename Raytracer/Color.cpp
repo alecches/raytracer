@@ -13,6 +13,20 @@ Color::Color(double a, double b, double c) {
 	blue = c;
 }
 
+double Color::clamp(double a) {
+
+	if (a > 1) return 1;
+	if (a < 0) return 0;
+	return a;
+
+}
+
+void Color::clampRGB() {
+	red = clamp(red);
+	green = clamp(green);
+	blue = clamp(blue);
+}
+
 bool Color::operator==(Color c) {
 	const double E = 0.00001;
 
