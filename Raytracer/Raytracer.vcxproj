@@ -127,6 +127,7 @@
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Tuple.cpp" />
     <ClCompile Include="TupleFactory.cpp" />
   </ItemGroup>
@@ -136,6 +137,8 @@
   <ItemGroup>
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Util.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="Tuple.h" />
     <ClInclude Include="TupleFactory.h" />
   </ItemGroup>

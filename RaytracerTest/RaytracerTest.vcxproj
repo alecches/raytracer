@@ -44,6 +44,7 @@
     </ClCompile>
     <ClCompile Include="CanvasTest.cpp" />
     <ClCompile Include="ColorTest.cpp" />
+    <ClCompile Include="MatrixTest.cpp" />
     <ClCompile Include="VectorTest.cpp" />
     <ClCompile Include="TupleTest.cpp" />
   </ItemGroup>

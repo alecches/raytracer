@@ -15,7 +15,7 @@ Tuple::Tuple(double a, double b, double c, double d) {
 	w = d;
 }
 
-bool Tuple::equals(Tuple t) {
+bool Tuple::operator==(Tuple t) {
 
 	const double E = 0.00001;
 

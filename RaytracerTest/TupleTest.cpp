@@ -50,14 +50,14 @@ TEST(TupleTest, Equality) {
 	Tuple t1(2.3, 1, -5, 1);
 	Tuple t2(2.3, 1, -5, 1);
 
-	EXPECT_TRUE(t1.equals(t2));
+	EXPECT_TRUE(t1 == t2);
 }
 
 TEST(TupleTest, Inequality) {
 	Tuple t1(2.3, 1, -5, 1);
 	Tuple t2(2.3, 2, -5, 1);
 
-	EXPECT_FALSE(t1.equals(t2));
+	EXPECT_FALSE(t1 == t2);
 }
 
 TEST(TupleTest, Addition) {
@@ -67,7 +67,7 @@ TEST(TupleTest, Addition) {
 
 	t1 = t1 + t2;
 
-	EXPECT_TRUE(t1.equals(result));
+	EXPECT_TRUE(t1 == result);
 	EXPECT_TRUE(t1.isAPoint());
 
 }
@@ -79,7 +79,7 @@ TEST(TupleTest, PointsSubtraction) {
 
 	t1 = t1 - t2;
 
-	EXPECT_TRUE(t1.equals(result));
+	EXPECT_TRUE(t1 == result);
 	EXPECT_TRUE(t1.isAVector());
 }
 
@@ -90,7 +90,7 @@ TEST(TupleTest, VectorAndPointSubtraction) {
 
 	p = p - v;
 
-	EXPECT_TRUE(p.equals(result));
+	EXPECT_TRUE(p == result);
 	EXPECT_TRUE(p.isAPoint());
 
 }
@@ -102,7 +102,7 @@ TEST(TupleTest, VectorsSubtraction) {
 
 	v1 = v1 - v2;
 
-	EXPECT_TRUE(v1.equals(result));
+	EXPECT_TRUE(v1 == result);
 	EXPECT_TRUE(v1.isAVector());
 }
 
@@ -112,7 +112,7 @@ TEST(TupleTest, Negate) {
 
 	t = -t;
 
-	EXPECT_TRUE(t.equals(result));
+	EXPECT_TRUE(t == result);
 }
 
 TEST(TupleTest, Scale) {
@@ -121,7 +121,7 @@ TEST(TupleTest, Scale) {
 	
 	t = t * 2;
 
-	EXPECT_TRUE(t.equals(result));
+	EXPECT_TRUE(t == result);
 }
 
 TEST(TupleTest, Division) {
@@ -130,5 +130,5 @@ TEST(TupleTest, Division) {
 
 	t = t / 2;
 
-	EXPECT_TRUE(t.equals(result));
+	EXPECT_TRUE(t == result);
 }

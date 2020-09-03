@@ -3,6 +3,7 @@
 #include "../Raytracer/Canvas.h"
 #include "../Raytracer/Canvas.cpp"
 
+
 TEST(CanvasTest, Constructor) {
 	Canvas c(10, 20);
 	Color black;

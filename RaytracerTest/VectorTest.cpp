@@ -30,13 +30,13 @@ TEST(VectorTest, Magnitude123Negative) {
 TEST(VectorTest, Normalize400) {
 	Tuple v(4, 0, 0, 0);
 	Tuple result(1, 0, 0, 0);
-	EXPECT_TRUE(v.normalize().equals(result));
+	EXPECT_TRUE(v.normalize() == result);
 }
 
 TEST(VectorTest, Normalize123) {
 	Tuple v(1, 2, 3, 0);
 	Tuple result(1 / sqrt(14), 2 / sqrt(14), 3 / sqrt(14), 0);
-	EXPECT_TRUE(v.normalize().equals(result));
+	EXPECT_TRUE(v.normalize() == result);
 }
 
 TEST(VectorTest, NormalizedMagnitude) {
@@ -57,6 +57,6 @@ TEST(VectorTest, CrossProduct) {
 	Tuple result1(-1, 2, -1, 0);
 	Tuple result2(1, -2, 1, 0);
 
-	EXPECT_TRUE(v1.cross(v2).equals(result1));
-	EXPECT_TRUE(v2.cross(v1).equals(result2));
+	EXPECT_TRUE(v1.cross(v2) == result1);
+	EXPECT_TRUE(v2.cross(v1) == result2);
 }
