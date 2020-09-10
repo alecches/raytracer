@@ -2,11 +2,11 @@
 #include <cmath>
 #include "Matrix.h"
 
+using namespace std;
+
 const double Epsilon = 0.00001;
+const double PI = 3.141592653589793;
 
+bool doubleEqual(double a, double b);
 
-bool doubleEqual(double a, double b) {
-	if (abs(a - b) > Epsilon) return false;
-	else return true;
-}
-
+// this is bad practice... headers files should only contain function decl not definition

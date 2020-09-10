@@ -20,7 +20,6 @@ private:
 public:
 
 	Matrix(unsigned, unsigned);
-	static Matrix identity();
 	Comma operator<<(double val) {
 		m[0] = val;
 		return Comma(*this, 1);
@@ -38,5 +37,13 @@ public:
 	bool isInvertible();
 	Matrix inverse();
 };
+
+Matrix identity();
+Matrix translation(double, double, double);
+Matrix scale(double, double, double);
+Matrix rotationX(double);
+Matrix rotationY(double);
+Matrix rotationZ(double);
+Matrix shear(double, double, double, double, double, double);
 
 

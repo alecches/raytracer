@@ -1,11 +1,13 @@
 #include "Matrix.h"
 #include "Util.h"
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 Matrix::Matrix(unsigned a, unsigned b) {
 
 	row = a;
 	col = a;
-	m = new double[row * col]; 
+	m = new double[row * col]; // potential mem leak? needs a 'delete' later on
 	
 }
 
@@ -82,7 +84,7 @@ Tuple Matrix::operator*(Tuple t) {
 	return product;
 }
 
-Matrix Matrix::identity() {
+Matrix identity() {
 	Matrix m(4, 4);
 	m << 1, 0, 0, 0,
 		0, 1, 0, 0,
@@ -168,4 +170,75 @@ Matrix Matrix::inverse() {
 
 	return inv;
 
+}
+
+/***************************************************/
+//------ Transformation Methods ------------------//
+/*************************************************/
+
+
+Matrix translation(double x, double y, double z) {
+	Matrix transform = identity();
+
+	transform(0, 3) = x;
+	transform(1, 3) = y;
+	transform(2, 3) = z;
+
+	return transform;
+}
+
+Matrix scale(double x, double y, double z) {
+	Matrix transform = identity();
+
+	transform(0, 0) = x;
+	transform(1, 1) = y;
+	transform(2, 2) = z;
+
+	return transform;
+}
+
+Matrix rotationX(double rads) {
+	Matrix transform = identity();
+
+	transform(1, 1) = cos(rads);
+	transform(1, 2) = -sin(rads);
+	transform(2, 1) = sin(rads);
+	transform(2, 2) = cos(rads);
+
+	return transform;
+}
+
+Matrix rotationY(double rads) {
+	Matrix transform = identity();
+
+	transform(0, 0) = cos(rads);
+	transform(0, 2) = sin(rads);
+	transform(2, 0) = -sin(rads);
+	transform(2, 2) = cos(rads);
+
+	return transform;
+}
+
+Matrix rotationZ(double rads) {
+	Matrix transform = identity();
+
+	transform(0, 0) = cos(rads);
+	transform(0, 1) = -sin(rads);
+	transform(1, 0) = sin(rads);
+	transform(1, 1) = cos(rads);
+
+	return transform;
+}
+
+Matrix shear(double xy, double xz, double yx, double yz, double zx, double zy) {
+	Matrix transform = identity();
+
+	transform(0, 1) = xy;
+	transform(0, 2) = xz;
+	transform(1, 0) = yx;
+	transform(1, 2) = yz;
+	transform(2, 0) = zx;
+	transform(2, 1) = zy;
+
+	return transform;
 }
