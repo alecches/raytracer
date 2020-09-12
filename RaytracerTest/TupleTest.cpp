@@ -26,8 +26,7 @@ TEST(TupleTest, IsVector) {
 }
 
 TEST(TupleTest, FactoryPoint) {
-	TupleFactory tf;
-	Tuple p = *tf.point(1, 2, 3);
+	Tuple p = point(1, 2, 3);
 
 	ASSERT_EQ(p.w, 1.0);
 	ASSERT_EQ(p.x, 1);
@@ -37,8 +36,7 @@ TEST(TupleTest, FactoryPoint) {
 }
 
 TEST(TupleTest, FactoryVector) {
-	TupleFactory tf;
-	Tuple p = *tf.vector(1, 2, 3);
+	Tuple p = vec(1, 2, 3);
 
 	ASSERT_EQ(p.w, 0.0);
 	ASSERT_EQ(p.x, 1);

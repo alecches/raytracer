@@ -1,5 +1,5 @@
 #pragma once
-#include "Tuple.h"
+#include "Ray.h"
 // sort of a mess, maybe use Eigen in the future?
 
 class Matrix
@@ -19,6 +19,7 @@ private:
 
 public:
 
+	Matrix(){}
 	Matrix(unsigned, unsigned);
 	Comma operator<<(double val) {
 		m[0] = val;
@@ -26,9 +27,10 @@ public:
 	}
 	double& operator()(unsigned, unsigned);
 	double operator()(unsigned, unsigned) const;
-	bool operator==(Matrix);
-	Matrix operator*(Matrix);
-	Tuple operator*(Tuple);
+	bool operator==(const Matrix&);
+	Matrix operator*(const Matrix&);
+	Tuple operator*(const Tuple&);
+	Ray operator*(const Ray&);
 	Matrix transpose();
 	double determinant();
 	Matrix submatrix(unsigned, unsigned);

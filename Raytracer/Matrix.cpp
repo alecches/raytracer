@@ -19,7 +19,7 @@ double Matrix::operator()(unsigned r, unsigned c) const {
 	return m[r*row + c];
 }
 
-bool Matrix::operator==(Matrix mat2) {
+bool Matrix::operator==(const Matrix& mat2) {
 
 	if (row != mat2.row || col != mat2.col) {
 		return false;
@@ -38,7 +38,7 @@ bool Matrix::operator==(Matrix mat2) {
 	return true;
 }
 
-Matrix Matrix::operator*(Matrix mat2) {
+Matrix Matrix::operator*(const Matrix& mat2) {
 	// only for 4 by 4 matrices
 	Matrix product(4, 4);
 
@@ -54,7 +54,7 @@ Matrix Matrix::operator*(Matrix mat2) {
 	return product;
 }
 
-Tuple Matrix::operator*(Tuple t) {
+Tuple Matrix::operator*(const Tuple& t) {
 	Tuple product;
 	
 	product.x =
@@ -82,6 +82,65 @@ Tuple Matrix::operator*(Tuple t) {
 		(*this)(3, 3) * t.w;
 	
 	return product;
+}
+
+Ray Matrix::operator*(const Ray& r) {
+
+	Tuple productOrig;
+	Tuple productDir;
+	
+	Tuple o = r.origin();
+	Tuple d = r.direction();
+
+	productOrig.x =
+		(*this)(0, 0) * o.x +
+		(*this)(0, 1) * o.y +
+		(*this)(0, 2) * o.z +
+		(*this)(0, 3) * o.w;
+
+	productOrig.y =
+		(*this)(1, 0) * o.x +
+		(*this)(1, 1) * o.y +
+		(*this)(1, 2) * o.z +
+		(*this)(1, 3) * o.w;
+
+	productOrig.z =
+		(*this)(2, 0) * o.x +
+		(*this)(2, 1) * o.y +
+		(*this)(2, 2) * o.z +
+		(*this)(2, 3) * o.w;
+
+	productOrig.w =
+		(*this)(3, 0) * o.x +
+		(*this)(3, 1) * o.y +
+		(*this)(3, 2) * o.z +
+		(*this)(3, 3) * o.w;
+
+	productDir.x =
+		(*this)(0, 0) * d.x +
+		(*this)(0, 1) * d.y +
+		(*this)(0, 2) * d.z +
+		(*this)(0, 3) * d.w;
+
+	productDir.y =
+		(*this)(1, 0) * d.x +
+		(*this)(1, 1) * d.y +
+		(*this)(1, 2) * d.z +
+		(*this)(1, 3) * d.w;
+
+	productDir.z =
+		(*this)(2, 0) * d.x +
+		(*this)(2, 1) * d.y +
+		(*this)(2, 2) * d.z +
+		(*this)(2, 3) * d.w;
+
+	productDir.w =
+		(*this)(3, 0) * d.x +
+		(*this)(3, 1) * d.y +
+		(*this)(3, 2) * d.z +
+		(*this)(3, 3) * d.w;
+
+	return Ray(productOrig, productDir);
 }
 
 Matrix identity() {
