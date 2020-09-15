@@ -3,6 +3,8 @@
 #include "Matrix.h" //// THIS MAKES IT ALL CIRCULAR!
 //class Matrix;
 //#include "Tuple.h"
+//class Matrix;
+//Matrix identity();
 
 class Sphere
 {

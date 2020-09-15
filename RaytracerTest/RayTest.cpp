@@ -146,3 +146,23 @@ TEST(RayTest, SphereSetT) {
 	s.transform(translation(2, 3, 4));
 	EXPECT_TRUE(s.transform() == translation(2, 3, 4));
 }
+
+TEST(RayTest, ScaledSphereIntersection) {
+	Sphere s;
+	Ray r(point(0, 0, -5), vec(0, 0, 1));
+	s.transform(scale(2, 2, 2));
+	std::deque<Intersection> xs = r.intersect(s);
+
+	EXPECT_EQ(xs.size(), 2);
+	EXPECT_EQ(xs[0].t, 3);
+	EXPECT_EQ(xs[1].t, 7);
+}
+
+TEST(RayTest, TranslatedSphereIntersection) {
+	Sphere s;
+	Ray r(point(0, 0, -5), vec(0, 0, 1));
+	s.transform(translation(5, 0, 0));
+	std::deque<Intersection> xs = r.intersect(s);
+
+	EXPECT_EQ(xs.size(), 0);
+}
