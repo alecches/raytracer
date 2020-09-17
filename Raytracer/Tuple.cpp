@@ -111,3 +111,8 @@ Tuple Tuple::cross(Tuple t) {
 
 	return product;
 }
+
+Tuple Tuple::reflect(Tuple normal) {
+	if (w == 0) return (*this) - normal * 2 * (*this).dot(normal);
+	else return Tuple(0, 0, 0, 0);
+}

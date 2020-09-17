@@ -40,10 +40,11 @@ std::string Canvas::toPPM() {
 	for (int i = 0; i < height; i++) {
 
 		std::string line;
+		int len = 0;
 
 		for (int j = 0; j < width; j++) {
 
-			int len = line.length() % 70;
+			//int len = line.length() % 70;
 
 			int index = i * width + j;
 			Color c = pixels[index];
@@ -52,26 +53,39 @@ std::string Canvas::toPPM() {
 			std::string blue = std::to_string((int)round(c.blue * 255));
 
 			int redl = red.length();
+			int greenl = green.length();
+			int bluel = blue.length();
+
 			if (len == 0) line += red;
-			else if (len + 1 + redl < 70) line += ' ' + red;
+			else if (len + 1 + redl <= 70) line += ' ' + red;
 			else {
 				line += '\n' + red + ' ' + green + ' ' + blue;
+				len = redl + 1 + greenl + 1 + bluel;
 				continue;
 			}
-			if (len == 0) len += redl;
+			if (len == 0) len += redl; 
 			else len += 1 + redl;
-			int greenl = green.length();
-			if (len + 1 + greenl < 70) line += ' ' + green;
+			
+			if (len + 1 + greenl <= 70) line += ' ' + green;
 			else {
 				line += '\n' + green + ' ' + blue;
+				len = greenl + 1 + bluel;
 				continue;
 			}
 			len += 1 + greenl;
-			int bluel = blue.length();
+			
 			if (len + 1 + bluel < 70) line += ' ' + blue;
+			else if (len + 1 + bluel == 70) {
+				line += ' ' + blue + '\n';
+				len = 0;
+				continue;
+			}
 			else {
 				line += '\n' + blue;
+				len = bluel;
+				continue;
 			}
+			len += 1 + bluel;
 
 		}
 

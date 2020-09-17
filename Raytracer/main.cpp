@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include "Canvas.h"
 #include "Color.h"
 #include "Matrix.h"
@@ -10,17 +11,46 @@ using namespace std;
 
 
 int main() {
-	int w = 300, l = 300;
-	Canvas c(w, l);
+
+	int canvas_pixels = 200;
+	Canvas c(canvas_pixels, canvas_pixels);
+	Tuple ray_origin = point(0, 0, -5);
+	double wall_z = 10;
+	double wall_size = 7.0;
+
+	double pixel_size = wall_size / static_cast<double>(canvas_pixels);
+	double half_wall = wall_size / 2;
 
 	Sphere s;
-	s.transform(scale(100, 100, 1));
+	Material m;
+	m.color(Color(1, 0.2, 1));
+	s.material(m);
 
-	for (int i = 0; i < w; ++i) {
-		for (int j = 0; j < l; ++j) {
-			Ray cast(point(i - 150.0, j - 150.0, -5), vec(0, 0, 1)); // - 150 to center the image
+	PointLight light(point(-10, 10, -10), Color(1, 1, 1));
+
+	for (int i = 0; i < canvas_pixels; ++i) {
+
+		double world_y = half_wall - pixel_size * i;
+
+		for (int j = 0; j < canvas_pixels; ++j) {
+
+			double world_x = -half_wall + pixel_size * j;
+			Tuple target_point = point(world_x, world_y, wall_z);
+
+			Ray cast(ray_origin, (target_point - ray_origin).normalize());
 			std::deque<Intersection> xs = cast.intersect(s);
-			if (hit(xs) >= 0) c.writePixel(i, j, Color(0, 1, 0));
+
+			int h = hit(xs);
+			if (h >= 0) {
+				Tuple p = cast.position(xs[h].t);
+				Sphere obj = *(xs[h].object);
+				Tuple normal = obj.normalAt(p);
+				Tuple eye = -cast.direction();
+
+				Color col = lighting(obj.material(), light, p, eye, normal);
+				
+				c.writePixel(j, i, col);
+			}
 		}
 	}
 

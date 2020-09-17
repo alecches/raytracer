@@ -12,6 +12,7 @@ public:
 	bool equals(Tuple);
 	double magnitude();
 	Tuple normalize();
+	Tuple reflect(Tuple);
 
 	Tuple operator+(Tuple);
 	Tuple operator-(Tuple);
