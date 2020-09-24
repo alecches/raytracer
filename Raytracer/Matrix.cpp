@@ -3,11 +3,39 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 
-Matrix::Matrix(unsigned a, unsigned b) {
+/*Matrix::Matrix() {
+	row = 4;
+	col = 4;
+	m = new double[4 * 4];
 
-	row = a;
-	col = a;
-	m = new double[row * col]; // potential mem leak? needs a 'delete' later on
+	(*this) <<
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1;
+}*/
+
+Matrix::Matrix(const Matrix& mat) {
+
+	(*this).row = mat.row;
+	(*this).col = mat.col;
+	(*this).m = new double[row * col];
+
+	for (int i = 0; i < row * col; ++i) {
+		(*this).m[i] = mat.m[i];
+	}
+
+}
+
+void Matrix::operator=(const Matrix& mat) {
+
+	(*this).row = mat.row;
+	(*this).col = mat.col;
+	(*this).m = new double[row * col];
+
+	for (int i = 0; i < row * col; ++i) {
+		(*this).m[i] = mat.m[i];
+	}
 	
 }
 

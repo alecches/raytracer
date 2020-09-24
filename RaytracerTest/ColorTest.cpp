@@ -5,9 +5,9 @@
 TEST(ColorTest, Constructor) {
 	Color c(0.8, 0.4, 1.2);
 
-	EXPECT_EQ(c.red, 0.8);
-	EXPECT_EQ(c.green, 0.4);
-	EXPECT_EQ(c.blue, 1.2);
+	EXPECT_EQ(c.red(), 0.8);
+	EXPECT_EQ(c.green(), 0.4);
+	EXPECT_EQ(c.blue(), 1.2);
 }
 
 TEST(ColorTest, Addition) {

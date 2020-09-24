@@ -1,19 +1,7 @@
 #include "Color.h"
 #include <cmath>
 
-Color::Color() {
-	red = 0.0;
-	green = 0.0;
-	blue = 0.0;
-}
-
-Color::Color(double a, double b, double c) {
-	red = a;
-	green = b;
-	blue = c;
-}
-
-double Color::clamp(double a) {
+double clamp(double a) {
 
 	if (a > 1) return 1;
 	if (a < 0) return 0;
@@ -22,53 +10,52 @@ double Color::clamp(double a) {
 }
 
 void Color::clampRGB() {
-	red = clamp(red);
-	green = clamp(green);
-	blue = clamp(blue);
+	red_ = clamp(red_);
+	green_ = clamp(green_);
+	blue_ = clamp(blue_);
 }
 
-bool Color::operator==(Color c) {
+bool Color::operator==(const Color& c) {
 	const double E = 0.00001;
 
-	if (abs(red - c.red) > E) return false;
-	if (abs(green - c.green) > E) return false;
-	if (abs(blue - c.blue) > E) return false;
+	if (abs(red_ - c.red_) > E) return false;
+	if (abs(green_ - c.green_) > E) return false;
+	if (abs(blue_ - c.blue_) > E) return false;
 	return true;
 }
 
 
-Color Color::operator+(Color c2) {
-	Color c;
-	c.red = red + c2.red;
-	c.green = green + c2.green;
-	c.blue = blue + c2.blue;
+Color Color::operator+(const Color& c2) {
+	
+	double r = red_ + c2.red();
+	double g = green_ + c2.green();
+	double b = blue_ + c2.blue();
 
-	return c;
+	return Color(r, g, b);
 }
 
-Color Color::operator-(Color c2) {
-	Color c;
-	c.red = red - c2.red;
-	c.green = green - c2.green;
-	c.blue = blue - c2.blue;
+Color Color::operator-(const Color& c2) {
 
-	return c;
+	double r = red_ - c2.red();
+	double g = green_ - c2.green();
+	double b = blue_ - c2.blue();
+
+	return Color(r, g, b);
 }
 
-Color Color::operator*(Color c2) {
-	Color c;
-	c.red = red * c2.red;
-	c.green = green * c2.green;
-	c.blue = blue * c2.blue;
+Color Color::operator*(const Color& c2) {
+	double r = red_ * c2.red();
+	double g = green_ * c2.green();
+	double b = blue_ * c2.blue();
 
-	return c;
+	return Color(r, g, b);
 }
 
 Color Color::operator*(double scalar) {
-	Color c;
-	c.red = red * scalar;
-	c.green = green * scalar;
-	c.blue = blue * scalar;
 
-	return c;
+	double r = red_ * scalar;
+	double g = green_ * scalar;
+	double b = blue_ * scalar;
+
+	return Color(r, g, b);
 }

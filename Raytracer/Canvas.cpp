@@ -3,25 +3,25 @@
 
 Canvas::Canvas(int a, int b) {
 
-	width = a;
-	height = b;
+	width_ = a;
+	height_ = b;
 
-	pixels = new Color[width * height];
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			pixels[i * width + j] = Color();
+	pixels = new Color[width_ * height_];
+	for (int i = 0; i < height_; i++) {
+		for (int j = 0; j < width_; j++) {
+			pixels[i * width_ + j] = Color();
 		}
 	}
 }
 
 Color Canvas::getPixel(int x, int y) {
-	return pixels[x + y * width];
+	return pixels[x + y * width_];
 }
 
 void Canvas::writePixel(int x, int y, Color c) {
 	
 	c.clampRGB();
-	pixels[x + y * width] = c;
+	pixels[x + y * width_] = c;
 
 }
 
@@ -33,24 +33,24 @@ std::string Canvas::toPPM() {
 
 	std::string str;
 	str += "P3\n";
-	str += std::to_string(width) + ' ';
-	str += std::to_string(height) + '\n';
+	str += std::to_string(width_) + ' ';
+	str += std::to_string(height_) + '\n';
 	str += "255\n";
 
-	for (int i = 0; i < height; i++) {
+	for (int i = 0; i < height_; i++) {
 
 		std::string line;
 		int len = 0;
 
-		for (int j = 0; j < width; j++) {
+		for (int j = 0; j < width_; j++) {
 
 			//int len = line.length() % 70;
 
-			int index = i * width + j;
+			int index = i * width_ + j;
 			Color c = pixels[index];
-			std::string red = std::to_string((int)round(c.red * 255));
-			std::string green = std::to_string((int)round(c.green * 255));
-			std::string blue = std::to_string((int)round(c.blue * 255));
+			std::string red = std::to_string((int)round(c.red() * 255));
+			std::string green = std::to_string((int)round(c.green() * 255));
+			std::string blue = std::to_string((int)round(c.blue() * 255));
 
 			int redl = red.length();
 			int greenl = green.length();

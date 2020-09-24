@@ -20,12 +20,16 @@ private:
 
 public:
 
-	Matrix(){}
-	Matrix(unsigned, unsigned);
+	Matrix(): row{ 4 }, col{ 4 }, m{ new double[4 * 4] } {}
+	Matrix(unsigned w, unsigned l) : row{ w }, col{ l }, m{ new double[w * l] } {}
+	Matrix(const Matrix&); // do more research on copy-and-swap and Rule of Three
+	void operator=(const Matrix&);
 	Comma operator<<(double val) {
 		m[0] = val;
 		return Comma(*this, 1);
 	}
+	~Matrix() { delete [] m; }
+
 	double& operator()(unsigned, unsigned);
 	double operator()(unsigned, unsigned) const;
 	bool operator==(const Matrix&);

@@ -8,11 +8,11 @@ TEST(CanvasTest, Constructor) {
 	Canvas c(10, 20);
 	Color black;
 
-	EXPECT_EQ(c.width, 10);
-	EXPECT_EQ(c.height, 20);
+	EXPECT_EQ(c.width(), 10);
+	EXPECT_EQ(c.height(), 20);
 
-	for (int i = 0; i < c.width; i++) {
-		for (int j = 0; j < c.height; j++) {
+	for (int i = 0; i < c.width(); i++) {
+		for (int j = 0; j < c.height(); j++) {
 			EXPECT_TRUE(c.getPixel(i, j) == black);
 		}
 	}

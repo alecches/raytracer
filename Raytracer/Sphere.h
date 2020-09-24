@@ -14,11 +14,13 @@ private:
 	Matrix transform_;
 	Material mat_;
 public:
-	Sphere() :center_{ Tuple(0,0,0,1) }, transform_{ identity() }, mat_{ Material() } {};
+	Sphere() :center_{ Tuple(0,0,0,1) }, transform_{ Matrix(identity()) }, mat_{ Material() } {};
 	Matrix transform() const { return transform_; }
 	Material material() const { return mat_; }
-	void transform(Matrix m) { transform_ = std::move(m); }
+	void transform(Matrix m) { transform_ =  m; }
 	void material(Material mat) { mat_ = std::move(mat); }
+	//void transform(Matrix m) { transform_ = std::move(m); }
+	//void material(Material mat) { mat_ = std::move(mat); }
 	Tuple normalAt(Tuple p);
 };
 
