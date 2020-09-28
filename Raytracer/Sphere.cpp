@@ -12,3 +12,7 @@ Tuple Sphere::normalAt(Tuple worldP) {
 	worldNormal.w = 0;
 	return worldNormal.normalize();
 }
+
+Object* Sphere::heapObject() const {
+	return new Sphere(*this);
+}

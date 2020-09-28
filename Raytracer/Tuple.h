@@ -7,6 +7,7 @@ public:
 	double x, y, z, w;
 	Tuple();
 	Tuple(double, double, double, double);
+	Tuple(const Tuple&);
 	bool isAPoint() { return w == 1; }
 	bool isAVector() { return w == 0; }
 	bool equals(Tuple);

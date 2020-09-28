@@ -8,9 +8,12 @@ class Color;
 class Light {
 public:
 
-	virtual Tuple position() = 0;
-	virtual Color intensity() = 0;
+	virtual Tuple position() const = 0;
+	virtual Color intensity() const = 0;
 
+	virtual bool operator==(const Light&) = 0;
+
+	virtual Light* heapLight() const = 0;
 	virtual ~Light() {}
 
 };

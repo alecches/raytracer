@@ -9,13 +9,17 @@ private:
 	Color color_;
 	double ambient_, diffuse_, specular_, shininess_;
 public:
+
 	Material() :color_{ Color(1, 1, 1) }, ambient_{ 0.1 }, diffuse_{ 0.9 }, specular_{ 0.9 }, shininess_{ 200.0 } { }
+	Material(const Material& m) : color_{ Color(m.color()) }, ambient_{ m.ambient() }, diffuse_{ m.diffuse() }, specular_{ m.specular() }, shininess_{ m.shininess() } {}
 	Color color() const { return color_; }
 	void color(Color c) { color_ = std::move(c); }
 	double ambient() const { return ambient_; }
 	void ambient(double d) { ambient_ = d; } // std::move might be excessive for a type double
 	double diffuse() const { return diffuse_; }
+	void diffuse(double d) { diffuse_ = d; }
 	double specular() const { return specular_; }
+	void specular(double d) { specular_ = d; }
 	double shininess() const { return shininess_; }
 
 	bool operator==(const Material&);

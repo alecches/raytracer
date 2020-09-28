@@ -15,6 +15,13 @@ Tuple::Tuple(double a, double b, double c, double d) {
 	w = d;
 }
 
+Tuple::Tuple(const Tuple& t) {
+	x = t.x;
+	y = t.y;
+	z = t.z;
+	w = t.w;
+}
+
 bool Tuple::operator==(Tuple t) {
 
 	const double E = 0.00001;

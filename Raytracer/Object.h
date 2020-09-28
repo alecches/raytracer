@@ -14,6 +14,8 @@ class Material;
 class Object {
 public:
 
+	virtual Object* heapObject() const = 0;
+
 	virtual Tuple position() const = 0;
 	virtual Matrix transform() const = 0;
 	virtual Material material() const = 0;
