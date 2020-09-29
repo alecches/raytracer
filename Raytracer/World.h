@@ -16,11 +16,12 @@ public:
 	std::list<Object*> objects() const { return objs_; } // why pass around a whole list? maybe just provide access function instead
 	std::list<Light*> lights() const {return lights_; }
 	void addObject(Object& o) { objs_.push_back(o.heapObject()); }
-	void addLight(Light& l) { lights_.push_back(l.heapLight()); }
+	void addLight(Light& l) {lights_.push_back(l.heapLight()); } // for now, only one light allowed
 
 	~World();
 
 };
 
 World defaultWorld();
+World defaultWorld(Light& l);
 

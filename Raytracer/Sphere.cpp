@@ -5,7 +5,7 @@ Sphere::Sphere() {
 	center_ = Tuple(0, 0, 0, 1);
 }*/
 
-Tuple Sphere::normalAt(Tuple worldP) {
+Tuple Sphere::normalAt(Tuple worldP) const {
 	Tuple objectP = transform_.inverse() * worldP;
 	Tuple objectNormal = objectP - Tuple(0, 0, 0, 1);
 	Tuple worldNormal = transform_.inverse().transpose() * objectNormal;

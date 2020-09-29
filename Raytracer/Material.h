@@ -3,6 +3,10 @@
 #include "PointLight.h"
 #include <utility>
 
+// to be removed in the future
+#include "World.h"
+#include "Intersection.h"
+
 class Material
 {
 private:
@@ -27,4 +31,6 @@ public:
 };
 
 // to be moved to generic Light class when needed.. or member of material?
-Color lighting(const Material&, const PointLight&, const Tuple&, const Tuple&, const Tuple&);
+Color lighting(const Material&, const Light&, const Tuple&, const Tuple&, const Tuple&);
+Color shadeHit(const World&, const IntersectInfo&);
+Color colorAt(const World&, const Ray&);

@@ -1,8 +1,9 @@
 #include "Intersection.h"
+#include "Ray.h" // shouldn't be a circular ref...
 
-Intersection::Intersection(double d, const Sphere& s) {
+Intersection::Intersection(double d, Object* const s) {
 	t = d;
-	object = &s;
+	object = s;
 }
 
 int hit(const std::deque<Intersection>& i) {
@@ -29,4 +30,20 @@ bool Intersection::operator==(const Intersection& i) {
 	if (t != i.t)return false;
 	if (object != i.object) return false;
 	return true;
+}
+
+IntersectInfo::IntersectInfo(Intersection i, Ray r) {
+
+	t = i.t;
+	object = i.object;
+	point = Tuple(r.position(t));
+	eyev = Tuple(-r.direction());
+	normalv = Tuple((*object).normalAt(point));
+
+	if (normalv.dot(eyev) < 0) {
+		inside = true;
+		normalv = -normalv;
+	}
+	else inside = false;
+
 }

@@ -36,13 +36,13 @@ public:
 	Matrix operator*(const Matrix&);
 	Tuple operator*(const Tuple&);
 	Ray operator*(const Ray&);
-	Matrix transpose();
-	double determinant();
-	Matrix submatrix(unsigned, unsigned);
-	double minor(unsigned, unsigned);
-	double cofactor(unsigned, unsigned);
-	bool isInvertible();
-	Matrix inverse();
+	Matrix transpose() const;
+	double determinant() const;
+	Matrix submatrix(unsigned, unsigned) const;
+	double minor(unsigned, unsigned) const;
+	double cofactor(unsigned, unsigned) const;
+	bool isInvertible() const;
+	Matrix inverse() const;
 };
 
 Matrix identity();
@@ -52,5 +52,6 @@ Matrix rotationX(double);
 Matrix rotationY(double);
 Matrix rotationZ(double);
 Matrix shear(double, double, double, double, double, double);
+Matrix view(Tuple, Tuple, Tuple);
 
 

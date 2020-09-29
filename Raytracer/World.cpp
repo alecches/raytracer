@@ -33,3 +33,23 @@ World::~World() {
 		delete l;
 	}
 }
+
+World defaultWorld(Light& l) {
+
+	Sphere s1 = Sphere();
+	Material m1 = Material();
+	m1.color(Color(0.8, 1, 0.6));
+	m1.diffuse(0.7);
+	m1.specular(0.2);
+	s1.material(m1);
+	Sphere s2 = Sphere();
+	s2.transform(scale(0.5, 0.5, 0.5));
+
+	World w = World();
+	w.addLight(l);
+	w.addObject(s1);
+	w.addObject(s2);
+
+	return w;
+
+}

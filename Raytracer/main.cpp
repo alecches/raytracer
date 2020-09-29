@@ -6,57 +6,55 @@
 #include "Sphere.h"
 #include "TupleFactory.h"
 #include "Intersection.h"
+#include "World.h"
+#include "Camera.h"
+#include "Util.h"
 
 using namespace std;
 
 
 int main() {
 
-	int canvas_pixels = 200;
-	Canvas c(canvas_pixels, canvas_pixels);
-	Tuple ray_origin = point(0, 0, -5);
-	double wall_z = 10;
-	double wall_size = 7.0;
+	World w;
 
-	double pixel_size = wall_size / static_cast<double>(canvas_pixels);
-	double half_wall = wall_size / 2;
+	Sphere s1;
+	s1.transform(translation(-0.5, 1, 0.5));
+	Material m1;
+	m1.color(Color(0.1, 1, 0.5));
+	m1.diffuse(0.7);
+	m1.specular(0.3);
+	s1.material(m1);
 
-	Sphere s;
-	Material m;
-	m.color(Color(1, 0.2, 1));
-	s.material(m);
+	Sphere s2;
+	s2.transform(translation(1.5, 0.5, -0.5)*scale(0.5, 0.5, 0.5));
+	Material m2;
+	m2.color(Color(0.5, 1, 0.1));
+	m2.diffuse(0.7);
+	m2.specular(0.3);
+	s2.material(m2);
 
-	PointLight light(point(-10, 10, -10), Color(1, 1, 1));
+	Sphere s3;
+	s3.transform(translation(-1.5, 0.33, -0.75));
+	Material m3;
+	m3.color(Color(1, 0.8, 0.1));
+	m3.diffuse(0.7);
+	m3.specular(0.3);
+	s3.material(m3);
 
-	for (int i = 0; i < canvas_pixels; ++i) {
+	w.addObject(s1);
+	w.addObject(s2);
+	w.addObject(s3);
+	PointLight l(point(-10, 10, -10), Color(1, 1, 1));
+	w.addLight(l);
 
-		double world_y = half_wall - pixel_size * i;
+	Camera c(300, 150, PI / 3);
+	c.transform(view(point(0, 1.5, -5), point(0, 1, 0), vec(0, 1, 0)));
 
-		for (int j = 0; j < canvas_pixels; ++j) {
-
-			double world_x = -half_wall + pixel_size * j;
-			Tuple target_point = point(world_x, world_y, wall_z);
-
-			Ray cast(ray_origin, (target_point - ray_origin).normalize());
-			std::deque<Intersection> xs = cast.intersect(s);
-
-			int h = hit(xs);
-			if (h >= 0) {
-				Tuple p = cast.position(xs[h].t);
-				Sphere obj = *(xs[h].object);
-				Tuple normal = obj.normalAt(p);
-				Tuple eye = -cast.direction();
-
-				Color col = lighting(obj.material(), light, p, eye, normal);
-				
-				c.writePixel(j, i, col);
-			}
-		}
-	}
+	Canvas image = render(c, w);
 
 	ofstream renderFile;
 	renderFile.open("render.ppm");
-	renderFile << c.toPPM();
+	renderFile << image.toPPM();
 	renderFile.close();
 
 	return 0;

@@ -26,7 +26,7 @@ public:
 	void material(Material mat) { mat_ = std::move(mat); }
 	//void transform(Matrix m) { transform_ = std::move(m); }
 	//void material(Material mat) { mat_ = std::move(mat); }
-	Tuple normalAt(Tuple p);
+	Tuple normalAt(Tuple p) const;
 
 	Object* heapObject() const;
 };

@@ -1,6 +1,5 @@
 #include "Matrix.h"
 #include "Util.h"
-#define _USE_MATH_DEFINES
 #include <cmath>
 
 /*Matrix::Matrix() {
@@ -180,7 +179,7 @@ Matrix identity() {
 	return m;
 }
 
-Matrix Matrix::transpose() {
+Matrix Matrix::transpose() const{
 
 	Matrix m(row, col);
 	
@@ -193,7 +192,7 @@ Matrix Matrix::transpose() {
 	return m;
 }
 
-double Matrix::determinant() {
+double Matrix::determinant() const{
 	double det = 0;
 	if (row == col && col == 2) {
 		det =  (*this)(0, 0) * (*this)(1, 1) - (*this)(0, 1) * (*this)(1, 0);
@@ -206,7 +205,7 @@ double Matrix::determinant() {
 	return det;
 }
 
-Matrix Matrix::submatrix(unsigned r, unsigned c) {
+Matrix Matrix::submatrix(unsigned r, unsigned c) const{
 	Matrix m(row - 1, col - 1);
 
 	int mrow, mcol;
@@ -226,23 +225,23 @@ Matrix Matrix::submatrix(unsigned r, unsigned c) {
 	return m;
 }
 
-double Matrix::minor(unsigned r, unsigned c) {
+double Matrix::minor(unsigned r, unsigned c) const{
 
 	return submatrix(r, c).determinant();
 
 }
 
-double Matrix::cofactor(unsigned r, unsigned c) {
+double Matrix::cofactor(unsigned r, unsigned c) const{
 	if ((r + c) % 2 == 0) return minor(r, c);
 	else return -minor(r, c);
 }
 
-bool Matrix::isInvertible() {
+bool Matrix::isInvertible() const {
 	if (determinant() == 0) return false;
 	return true;
 }
 
-Matrix Matrix::inverse() {
+Matrix Matrix::inverse() const {
 	//if (!isInvertible()) exit(EXIT_FAILURE);
 
 	Matrix inv(row, col);
@@ -328,4 +327,21 @@ Matrix shear(double xy, double xz, double yx, double yz, double zx, double zy) {
 	transform(2, 1) = zy;
 
 	return transform;
+}
+
+Matrix view(Tuple from, Tuple to, Tuple up) {
+
+	Tuple forward = (to - from).normalize();
+	Tuple upNorm = up.normalize();
+	Tuple left = forward.cross(upNorm);
+	Tuple upTrue = left.cross(forward);
+
+	Matrix orientation;
+	orientation <<
+		left.x, left.y, left.z, 0,
+		upTrue.x, upTrue.y, upTrue.z, 0,
+		-forward.x, -forward.y, -forward.z, 0,
+		0, 0, 0, 1;
+
+	return orientation * translation(-from.x, -from.y, -from.z);
 }
