@@ -11,13 +11,14 @@ bool Material::operator==(const Material& mat) {
 	return true;
 }
 
-Color lighting(const Material& mat, const Light& light, const Tuple& position,const Tuple& eyev, const Tuple& normalv){
+Color lighting(const Material& mat, const Light& light, const Tuple& position,const Tuple& eyev, const Tuple& normalv, bool inShadow){
 
 	Color effectiveColor = mat.color() * light.intensity();
 
 	Tuple lightv = (light.position() - position).normalize();
 
 	Color ambient = effectiveColor * mat.ambient();
+	if (inShadow) return ambient;
 	Color diffuse = Color(0, 0, 0);
 	Color specular = Color(0, 0, 0);
 
@@ -42,7 +43,7 @@ Color shadeHit(const World& w, const IntersectInfo& i) {
 
 	Color c(0, 0, 0);
 	for (auto l : lights) {
-		c = c + lighting(i.object->material(), *l, i.point, i.eyev, i.normalv);
+		c = c + lighting(i.object->material(), *l, i.point, i.eyev, i.normalv, inShadow(w, i.overPoint)); // for now, nothing is in shadow
 	}
 
 	return c;

@@ -24,4 +24,5 @@ public:
 
 World defaultWorld();
 World defaultWorld(Light& l);
+bool inShadow(const World&, const Tuple&);
 

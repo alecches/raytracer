@@ -1,5 +1,6 @@
 #include "Intersection.h"
 #include "Ray.h" // shouldn't be a circular ref...
+#include "Util.h"
 
 Intersection::Intersection(double d, Object* const s) {
 	t = d;
@@ -45,5 +46,7 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) {
 		normalv = -normalv;
 	}
 	else inside = false;
+
+	overPoint = point + normalv * Epsilon;
 
 }

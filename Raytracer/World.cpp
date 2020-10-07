@@ -53,3 +53,22 @@ World defaultWorld(Light& l) {
 	return w;
 
 }
+
+bool inShadow(const World& w, const Tuple& point) {
+
+	std::list<Light*> lights = w.lights();
+
+	for (auto l : lights) {
+		Tuple pointToLight = l->position() - point;
+		double distance = pointToLight.magnitude();
+		Tuple direction = pointToLight.normalize();
+
+		Ray r(point, direction);
+		std::deque<Intersection> intx = r.intersect(w);
+		int h = hit(intx);
+		if (h < 0);
+		else if (intx[h].t < distance) return true;
+	}
+
+	return false;
+}

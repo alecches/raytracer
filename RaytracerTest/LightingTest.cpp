@@ -118,7 +118,7 @@ TEST(LightingTest, Lighting1) {
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 0, -10), Color(1, 1, 1));
 
-	Color result = lighting(m, light, position, eye, normal);
+	Color result = lighting(m, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(1.9, 1.9, 1.9));
 }
@@ -130,7 +130,7 @@ TEST(LightingTest, Lighting2) {
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 0, -10), Color(1, 1, 1));
 
-	Color result = lighting(m, light, position, eye, normal);
+	Color result = lighting(m, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(1, 1, 1));
 }
@@ -142,7 +142,7 @@ TEST(LightingTest, Lighting3) {
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 10, -10), Color(1, 1, 1));
 
-	Color result = lighting(m, light, position, eye, normal);
+	Color result = lighting(m, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(0.7364, 0.7364, 0.7364));
 }
@@ -154,7 +154,7 @@ TEST(LightingTest, Lighting4) {
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 10, -10), Color(1, 1, 1));
 
-	Color result = lighting(m, light, position, eye, normal);
+	Color result = lighting(m, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(1.6364, 1.6364, 1.6364));
 }
@@ -166,7 +166,7 @@ TEST(LightingTest, Lighting5) {
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 0, 10), Color(1, 1, 1));
 
-	Color result = lighting(m, light, position, eye, normal);
+	Color result = lighting(m, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(0.1, 0.1, 0.1));
 }

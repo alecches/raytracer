@@ -31,6 +31,6 @@ public:
 };
 
 // to be moved to generic Light class when needed.. or member of material?
-Color lighting(const Material&, const Light&, const Tuple&, const Tuple&, const Tuple&);
+Color lighting(const Material&, const Light&, const Tuple&, const Tuple&, const Tuple&, bool);
 Color shadeHit(const World&, const IntersectInfo&);
 Color colorAt(const World&, const Ray&);

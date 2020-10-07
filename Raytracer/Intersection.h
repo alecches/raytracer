@@ -19,6 +19,7 @@ struct IntersectInfo {
 	double t;
 	Object* object;
 	Tuple point;
+	Tuple overPoint;
 	Tuple eyev;
 	Tuple normalv;
 	bool inside;
