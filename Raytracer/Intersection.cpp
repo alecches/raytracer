@@ -1,6 +1,7 @@
 #include "Intersection.h"
-#include "Ray.h" // shouldn't be a circular ref...
+ // shouldn't be a circular ref...
 #include "Util.h"
+#include "Object.h"
 
 Intersection::Intersection(double d, Object* const s) {
 	t = d;
@@ -39,7 +40,7 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) {
 	object = i.object;
 	point = Tuple(r.position(t));
 	eyev = Tuple(-r.direction());
-	normalv = Tuple((*object).normalAt(point));
+	normalv = Tuple(normalAt(point, object));
 
 	if (normalv.dot(eyev) < 0) {
 		inside = true;

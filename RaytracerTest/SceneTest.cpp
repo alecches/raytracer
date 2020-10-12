@@ -34,7 +34,7 @@ TEST(SceneTest, DefaultWorld) {
 TEST(SceneTest, IntersectWorld) {
 	World w = defaultWorld();
 	Ray r = Ray(point(0, 0, -5), vec(0, 0, 1));
-	std::deque<Intersection> intx = r.intersect(w);
+	std::deque<Intersection> intx = intersect(r, w);
 
 	EXPECT_EQ(intx.size(), 4);
 	EXPECT_EQ(intx[0].t, 4);

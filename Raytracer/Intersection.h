@@ -1,8 +1,9 @@
 #pragma once
 //#include "Sphere.h"
 #include <deque>
-#include "Tuple.h";
-class Ray;
+#include "Tuple.h"
+#include "Ray.h"
+//#include "Object.h"
 class Object; // a forward-declare
 
 struct Intersection

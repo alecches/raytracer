@@ -1,42 +1,44 @@
 #include "pch.h"
 #include "../Raytracer/Sphere.h"
-#include "../Raytracer/TupleFactory.h"
+#include "../Raytracer/Tuple.h"
 #include "../Raytracer/Util.h"
 #include "../Raytracer/PointLight.h"
 #include "../Raytracer/Material.h"
 #include "../Raytracer/Material.cpp"
+#include "../Raytracer/Light.h"
+#include "../Raytracer/Light.cpp"
 
 TEST(LightingTest, SphereNormX) {
 	Sphere s;
-	Tuple p = s.normalAt(point(1, 0, 0));
+	Tuple p = normalAt(point(1, 0, 0), &s);
 
 	EXPECT_TRUE(p == vec(1, 0, 0));
 }
 
 TEST(LightingTest, SphereNormY) {
 	Sphere s;
-	Tuple p = s.normalAt(point(0, 1, 0));
+	Tuple p = normalAt(point(0, 1, 0), &s);
 
 	EXPECT_TRUE(p == vec(0, 1, 0));
 }
 
 TEST(LightingTest, SphereNormZ) {
 	Sphere s;
-	Tuple p = s.normalAt(point(0, 0, 1));
+	Tuple p = normalAt(point(0, 0, 1), &s);
 
 	EXPECT_TRUE(p == vec(0, 0, 1));
 }
 
 TEST(LightingTest, SphereNormNonAxial) {
 	Sphere s;
-	Tuple p = s.normalAt(point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3));
+	Tuple p = normalAt(point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3), &s);
 
 	EXPECT_TRUE(p == vec(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
 }
 
 TEST(LightingTest, SphereNormNormalized) {
 	Sphere s;
-	Tuple p = s.normalAt(point(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
+	Tuple p = normalAt(point(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3), &s);
 
 	EXPECT_TRUE(p == p.normalize());
 }
@@ -44,7 +46,7 @@ TEST(LightingTest, SphereNormNormalized) {
 TEST(LightingTest, NormalTranslated) {
 	Sphere s;
 	s.transform(translation(0, 1, 0));
-	Tuple n = s.normalAt(point(0, 1.70711, -0.70711));
+	Tuple n = normalAt(point(0, 1.70711, -0.70711), &s);
 
 	EXPECT_TRUE(n == vec(0, 0.70711, -0.70711));
 }
@@ -52,7 +54,7 @@ TEST(LightingTest, NormalTranslated) {
 TEST(LightingTest, NormalScaledRotated) {
 	Sphere s;
 	s.transform(scale(1, 0.5, 1) * rotationZ(PI/5));
-	Tuple n = s.normalAt(point(0, sqrt(2)/2, -sqrt(2)/2));
+	Tuple n = normalAt(point(0, sqrt(2)/2, -sqrt(2)/2), &s);
 
 	EXPECT_TRUE(n == vec(0, 0.97014, -0.24254));
 }

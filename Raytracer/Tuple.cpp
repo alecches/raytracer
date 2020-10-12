@@ -123,3 +123,14 @@ Tuple Tuple::reflect(Tuple normal) {
 	if (w == 0) return (*this) - normal * 2 * (*this).dot(normal);
 	else return Tuple(0, 0, 0, 0);
 }
+
+
+// Past TupleFactory members...
+
+Tuple point(double a, double b, double c) {
+	return Tuple(a, b, c, 1.0);
+}
+
+Tuple vec(double a, double b, double c) {
+	return Tuple(a, b, c, 0.0);
+}

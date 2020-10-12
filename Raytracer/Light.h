@@ -1,8 +1,10 @@
 #pragma once
 
 // forward decls
-class Tuple;
-class Color;
+#include "Material.h"
+#include "Color.h"
+#include "Tuple.h"
+
 
 // interface for Lights (abstract class)
 class Light {
@@ -17,3 +19,6 @@ public:
 	virtual ~Light() {}
 
 };
+
+Color lighting(const Material&, const Light&, const Tuple&, const Tuple&, const Tuple&, bool);
+

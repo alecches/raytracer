@@ -1,7 +1,8 @@
 #include "World.h"
 #include "PointLight.h"
 #include "Sphere.h"
-#include "TupleFactory.h"
+#include "Tuple.h"
+#include <algorithm>
 
 World defaultWorld() {
 
@@ -64,11 +65,47 @@ bool inShadow(const World& w, const Tuple& point) {
 		Tuple direction = pointToLight.normalize();
 
 		Ray r(point, direction);
-		std::deque<Intersection> intx = r.intersect(w);
+		std::deque<Intersection> intx = intersect(r, w);
 		int h = hit(intx);
 		if (h < 0);
 		else if (intx[h].t < distance) return true;
 	}
 
 	return false;
+}
+
+bool compareT(Intersection a, Intersection b) { return (a.t < b.t); }
+
+std::deque<Intersection> intersect(const Ray& r, const World& w) {
+	std::deque<Intersection> intx = std::deque<Intersection>();
+	std::list<Object*> objs = w.objects();
+
+	for (auto o : objs) {
+		std::deque<Intersection> intsObj = intersect(r, o);
+		for (auto i : intsObj) {
+			intx.push_front(i); // can do away with these extra moves in the future... just insert obj's into the single deque
+		}
+	}
+
+	std::sort(intx.begin(), intx.end(), compareT);
+	return intx;
+}
+
+Color shadeHit(const World& w, const IntersectInfo& i) {
+	std::list<Light*> lights = w.lights();
+
+	Color c(0, 0, 0);
+	for (auto l : lights) {
+		c = c + lighting(i.object->material(), *l, i.point, i.eyev, i.normalv, inShadow(w, i.overPoint)); // for now, nothing is in shadow
+	}
+
+	return c;
+}
+
+Color colorAt(const World& w, const Ray& r) {
+	std::deque<Intersection> intx = intersect(r, w);
+	int i = hit(intx);
+	if (i < 0) return Color(0, 0, 0);
+	IntersectInfo iInf(intx[i], r);
+	return shadeHit(w, iInf);
 }

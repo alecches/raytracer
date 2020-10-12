@@ -1,8 +1,5 @@
 #pragma once
 #include "Tuple.h"
-#include "Intersection.h"
-#include "World.h"
-
 
 class Ray
 {
@@ -19,8 +16,7 @@ public:
 	//void origin(Tuple o) { origin_ = std::move(o); } //we dont want setters.. yet
 	Tuple position(double);
 
-	std::deque<Intersection> intersect(Object* const) const; // to be deprecated eventually? only works for spheres
-	std::deque<Intersection> intersect(const World&) const;
-
 };
+
+
 

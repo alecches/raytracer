@@ -4,11 +4,13 @@
 #include "Color.h"
 #include "Matrix.h"
 #include "Sphere.h"
-#include "TupleFactory.h"
+#include "Plane.h"
+#include "Tuple.h"
 #include "Intersection.h"
 #include "World.h"
 #include "Camera.h"
 #include "Util.h"
+#include "PointLight.h"
 
 using namespace std;
 
@@ -34,16 +36,19 @@ int main() {
 	s2.material(m2);
 
 	Sphere s3;
-	s3.transform(translation(-1.5, 0.33, -0.75));
+	s3.transform(translation(-1.5, 0.33, -0.75)*scale(0.33, 0.33, 0.33));
 	Material m3;
 	m3.color(Color(1, 0.8, 0.1));
 	m3.diffuse(0.7);
 	m3.specular(0.3);
 	s3.material(m3);
 
+	Plane p;
+
 	w.addObject(s1);
 	w.addObject(s2);
 	w.addObject(s3);
+	w.addObject(p);
 	PointLight l(point(-10, 10, -10), Color(1, 1, 1));
 	w.addLight(l);
 

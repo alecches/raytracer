@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "../Raytracer/Tuple.h"
 #include "../Raytracer/Tuple.cpp"
-#include "../Raytracer/TupleFactory.h"
-#include "../Raytracer/TupleFactory.cpp"
 
 
 TEST(TupleTest, IsPoint) {

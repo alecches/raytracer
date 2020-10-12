@@ -131,12 +131,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="Tuple.cpp" />
-    <ClCompile Include="TupleFactory.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,13 +152,13 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Intersection.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Tuple.h" />
-    <ClInclude Include="TupleFactory.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

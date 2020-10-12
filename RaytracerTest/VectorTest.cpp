@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "../Raytracer/Tuple.h"
-#include "../Raytracer/TupleFactory.h"
 
 TEST(VectorTest, Magnitude100) {
 	Tuple v(1, 0, 0, 0);

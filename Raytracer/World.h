@@ -3,6 +3,7 @@
 #include <memory>
 #include "Object.h"
 #include "Light.h"
+#include "Ray.h"
 
 class World
 {
@@ -25,4 +26,7 @@ public:
 World defaultWorld();
 World defaultWorld(Light& l);
 bool inShadow(const World&, const Tuple&);
+std::deque<Intersection> intersect(const Ray& r, const World& w);
+Color shadeHit(const World&, const IntersectInfo&);
+Color colorAt(const World&, const Ray&);
 

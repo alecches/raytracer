@@ -26,3 +26,6 @@ public:
 
 };
 
+Tuple point(double, double, double);
+Tuple vec(double, double, double);
+

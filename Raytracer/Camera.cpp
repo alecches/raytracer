@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "TupleFactory.h"
+#include "Tuple.h"
 #include "Material.h"
 #include <cmath>
 
