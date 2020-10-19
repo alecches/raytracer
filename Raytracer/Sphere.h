@@ -26,7 +26,7 @@ public:
 	//void transform(Matrix m) { transform_ = std::move(m); }
 	//void material(Material mat) { mat_ = std::move(mat); }
 	Tuple normalAt(Tuple p) const;
-	std::deque<Intersection> intersect(const Ray&);
+	void intersect(const Ray&, std::deque<Intersection>&) const;
 
 	Object* heapObject() const;
 };

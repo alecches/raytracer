@@ -9,15 +9,14 @@ Object* Plane::heapObject() const {
 	return new Plane(*this);
 }
 
-std::deque<Intersection> Plane::intersect(const Ray& rayT) {
+void Plane::intersect(const Ray& rayT, std::deque<Intersection>& intx) const {
 
 	Tuple origin = rayT.origin();
 	Tuple dir = rayT.direction();
 
-	std::deque<Intersection> intersections;
-	if (abs(dir.y) < Epsilon) return intersections;
+	if (abs(dir.y) < Epsilon) return;
 	
-	intersections.push_front(Intersection((-origin.y)/dir.y, this));
-
-	return intersections;
+	intx.push_front(Intersection((-origin.y)/dir.y, *this));
+	
+	return;
 }

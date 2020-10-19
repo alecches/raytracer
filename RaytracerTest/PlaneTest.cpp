@@ -17,31 +17,31 @@ TEST(PlaneTest, Normal) {
 TEST(PlaneTest, IntersectParallel) {
 	Plane p;
 	Ray r(point(0, 10, 0), vec(0, 0, 1));
-	std::deque<Intersection> intx = intersect(r, &p);
+	std::deque<Intersection> intx = intersect(r, p);
 	EXPECT_EQ(intx.size(), 0);
 }
 
 TEST(PlaneTest, IntersectCoplanar) {
 	Plane p;
 	Ray r(point(0, 0, 0), vec(0, 0, 1));
-	std::deque<Intersection> intx = intersect(r, &p);
+	std::deque<Intersection> intx = intersect(r, p);
 	EXPECT_EQ(intx.size(), 0);
 }
 
 TEST(PlaneTest, IntersectAbove) {
 	Plane p;
 	Ray r(point(0, 1, 0), vec(0, -1, 0));
-	std::deque<Intersection> intx = intersect(r, &p);
+	std::deque<Intersection> intx = intersect(r, p);
 	EXPECT_EQ(intx.size(), 1);
 	EXPECT_TRUE(intx[0].t == 1);
-	EXPECT_TRUE(intx[0].object == &p);
+	EXPECT_TRUE(&intx[0].object == &p);
 }
 
 TEST(PlaneTest, IntersectBelow) {
 	Plane p;
 	Ray r(point(0, -1, 0), vec(0, 1, 0));
-	std::deque<Intersection> intx = intersect(r, &p);
+	std::deque<Intersection> intx = intersect(r, p);
 	EXPECT_EQ(intx.size(), 1);
 	EXPECT_TRUE(intx[0].t == 1);
-	EXPECT_TRUE(intx[0].object == &p);
+	EXPECT_TRUE(&intx[0].object == &p);
 }

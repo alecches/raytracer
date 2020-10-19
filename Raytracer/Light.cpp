@@ -1,9 +1,16 @@
 #include "Light.h"
+#include "Object.h"
 
-Color lighting(const Material& mat, const Light& light, const Tuple& position, const Tuple& eyev, const Tuple& normalv, bool inShadow) {
+Color lighting(const Material& mat, const Object& obj, const Light& light, const Tuple& position, const Tuple& eyev, const Tuple& normalv, bool inShadow) {
 
-	Color effectiveColor = mat.color() * light.intensity();
-
+	Color effectiveColor = light.intensity();
+	if (&mat.pattern() != nullptr) {
+		//Color c = mat.pattern()->colorAtObject(position, obj);
+		Color c = mat.pattern().colorAtObject(position, obj);
+		effectiveColor = effectiveColor * c;
+	}
+	else effectiveColor = effectiveColor * mat.color();
+	
 	Tuple lightv = (light.position() - position).normalize();
 
 	Color ambient = effectiveColor * mat.ambient();

@@ -136,6 +136,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Pattern.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="Tuple.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Pattern.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Intersection.h" />

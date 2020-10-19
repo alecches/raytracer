@@ -20,5 +20,5 @@ public:
 
 };
 
-Color lighting(const Material&, const Light&, const Tuple&, const Tuple&, const Tuple&, bool);
+Color lighting(const Material&, const Object&, const Light&, const Tuple&, const Tuple&, const Tuple&, bool);
 

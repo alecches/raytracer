@@ -17,21 +17,20 @@ Object* Sphere::heapObject() const {
 	return new Sphere(*this);
 }
 
-std::deque<Intersection> Sphere::intersect(const Ray& rayT) {
+void Sphere::intersect(const Ray& rayT, std::deque<Intersection>& intx) const {
 	Tuple origin = rayT.origin();
 	Tuple dir = rayT.direction();
 
-	std::deque<Intersection> intersections;
 	Tuple sphereToRay = origin - Tuple(0, 0, 0, 1); // only have one shape... sphere at world origin
 	double a = dir.dot(dir);
 	double b = 2 * dir.dot(sphereToRay);
 	double c = sphereToRay.dot(sphereToRay) - 1;
 
 	double discriminant = pow(b, 2) - 4 * a * c;
-	if (discriminant < 0) return intersections;
+	if (discriminant < 0) return;
 
-	intersections.push_front(Intersection((-b + sqrt(discriminant)) / (2.0 * a), this));
-	intersections.push_front(Intersection((-b - sqrt(discriminant)) / (2.0 * a), this));
+	intx.push_front(Intersection((-b + sqrt(discriminant)) / (2.0 * a), *this));
+	intx.push_front(Intersection((-b - sqrt(discriminant)) / (2.0 * a), *this));
 
-	return intersections;
+	return;
 }

@@ -14,8 +14,9 @@ TEST(ShadowTest, InShadow) {
 	PointLight light(point(0, 0, -10), Color(1, 1, 1));
 	bool shadow = true;
 	Material m;
+	Sphere s;
 
-	Color c = lighting(m, light, point(0,0,0), eyev, normalv, shadow);
+	Color c = lighting(m, s, light, point(0,0,0), eyev, normalv, shadow);
 	EXPECT_TRUE(c == Color(0.1, 0.1, 0.1));
 }
 
@@ -53,7 +54,7 @@ TEST(ShadowTest, ShadeHitShadow) {
 	w.addObject(s2);
 
 	Ray r(point(0, 0, 5), vec(0, 0, 1));
-	Intersection i(4, &s2);
+	Intersection i(4, s2);
 	IntersectInfo iInf(i, r);
 	Color c = shadeHit(w, iInf);
 
@@ -66,7 +67,7 @@ TEST(ShadowTest, Offset) {
 	Sphere s;
 	s.transform(translation(0, 0, 1));
 
-	Intersection i(5, &s);
+	Intersection i(5, s);
 	IntersectInfo iInf(i, r);
 
 	EXPECT_TRUE(iInf.overPoint.z < -Epsilon / 2);

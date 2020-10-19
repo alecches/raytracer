@@ -27,7 +27,7 @@ TEST(SceneTest, DefaultWorld) {
 	s2.transform(scale(0.5, 0.5, 0.5));
 
 	Light* l2 = w.lights().front();
-	EXPECT_TRUE(l1 == *l2);
+	EXPECT_TRUE(&l1 == l2);
 
 }
 
@@ -46,12 +46,12 @@ TEST(SceneTest, IntersectWorld) {
 TEST(SceneTest, IntersectionState) {
 	Ray r = Ray(point(0, 0, -5), vec(0, 0, 1));
 	Sphere s = Sphere();
-	Intersection i = Intersection(4, &s);
+	Intersection i = Intersection(4, s);
 
 	IntersectInfo preComps = IntersectInfo(i, r);
 
 	EXPECT_EQ(preComps.t, i.t);
-	EXPECT_TRUE(preComps.object == i.object);
+	EXPECT_TRUE(&preComps.object == &i.object);
 	EXPECT_TRUE(preComps.point == point(0, 0, -1));
 	EXPECT_TRUE(preComps.eyev == vec(0, 0, -1));
 	EXPECT_TRUE(preComps.normalv == vec(0, 0, -1));
@@ -62,12 +62,12 @@ TEST(SceneTest, IntersectionState) {
 TEST(SceneTest, IntersectionStateInside) {
 	Ray r = Ray(point(0, 0, 0), vec(0, 0, 1));
 	Sphere s = Sphere();
-	Intersection i = Intersection(1, &s);
+	Intersection i = Intersection(1, s);
 
 	IntersectInfo preComps = IntersectInfo(i, r);
 
 	EXPECT_EQ(preComps.t, i.t);
-	EXPECT_TRUE(preComps.object == i.object);
+	EXPECT_TRUE(&preComps.object == &i.object);
 	EXPECT_TRUE(preComps.point == point(0, 0, 1));
 	EXPECT_TRUE(preComps.eyev == vec(0, 0, -1));
 	EXPECT_TRUE(preComps.normalv == vec(0, 0, -1));
@@ -79,7 +79,7 @@ TEST(SceneTest, ShadeIntersection) {
 	World w = defaultWorld();
 	Ray r = Ray(point(0, 0, -5), vec(0, 0, 1));
 	Object* o = w.objects().front();
-	Intersection i = Intersection(4, o);
+	Intersection i = Intersection(4, *o);
 	IntersectInfo iInf = IntersectInfo(i, r);
 	Color c = shadeHit(w, iInf);
 
@@ -91,7 +91,7 @@ TEST(SceneTest, ShadeIntersectionInside) {
 	World w = defaultWorld(PointLight(point(0, 0.25, 0), Color(1, 1, 1)));
 	Ray r = Ray(point(0, 0, 0), vec(0, 0, 1));
 	Object* o = w.objects().back();
-	Intersection i = Intersection(0.5, o);
+	Intersection i = Intersection(0.5, *o);
 	IntersectInfo iInf = IntersectInfo(i, r);
 	Color c = shadeHit(w, iInf);
 

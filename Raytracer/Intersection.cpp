@@ -3,11 +3,6 @@
 #include "Util.h"
 #include "Object.h"
 
-Intersection::Intersection(double d, Object* const s) {
-	t = d;
-	object = s;
-}
-
 int hit(const std::deque<Intersection>& i) {
 
 	int h = -1;
@@ -27,17 +22,19 @@ int hit(const std::deque<Intersection>& i) {
 
 }
 
+Intersection Intersection::operator=(const Intersection& i) {
+	return Intersection(i.t, i.object);
+}
+
 bool Intersection::operator==(const Intersection& i) {
 	
 	if (t != i.t)return false;
-	if (object != i.object) return false;
+	if (&object != &(i.object)) return false;
 	return true;
 }
 
-IntersectInfo::IntersectInfo(Intersection i, Ray r) {
+IntersectInfo::IntersectInfo(Intersection i, Ray r) : t{ i.t }, object{ i.object } {
 
-	t = i.t;
-	object = i.object;
 	point = Tuple(r.position(t));
 	eyev = Tuple(-r.direction());
 	normalv = Tuple(normalAt(point, object));
@@ -50,4 +47,8 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) {
 
 	overPoint = point + normalv * Epsilon;
 
+}
+
+IntersectInfo::~IntersectInfo(){
+	
 }

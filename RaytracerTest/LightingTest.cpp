@@ -10,35 +10,35 @@
 
 TEST(LightingTest, SphereNormX) {
 	Sphere s;
-	Tuple p = normalAt(point(1, 0, 0), &s);
+	Tuple p = normalAt(point(1, 0, 0), s);
 
 	EXPECT_TRUE(p == vec(1, 0, 0));
 }
 
 TEST(LightingTest, SphereNormY) {
 	Sphere s;
-	Tuple p = normalAt(point(0, 1, 0), &s);
+	Tuple p = normalAt(point(0, 1, 0), s);
 
 	EXPECT_TRUE(p == vec(0, 1, 0));
 }
 
 TEST(LightingTest, SphereNormZ) {
 	Sphere s;
-	Tuple p = normalAt(point(0, 0, 1), &s);
+	Tuple p = normalAt(point(0, 0, 1), s);
 
 	EXPECT_TRUE(p == vec(0, 0, 1));
 }
 
 TEST(LightingTest, SphereNormNonAxial) {
 	Sphere s;
-	Tuple p = normalAt(point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3), &s);
+	Tuple p = normalAt(point(sqrt(3)/3, sqrt(3)/3, sqrt(3)/3), s);
 
 	EXPECT_TRUE(p == vec(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
 }
 
 TEST(LightingTest, SphereNormNormalized) {
 	Sphere s;
-	Tuple p = normalAt(point(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3), &s);
+	Tuple p = normalAt(point(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3), s);
 
 	EXPECT_TRUE(p == p.normalize());
 }
@@ -46,7 +46,7 @@ TEST(LightingTest, SphereNormNormalized) {
 TEST(LightingTest, NormalTranslated) {
 	Sphere s;
 	s.transform(translation(0, 1, 0));
-	Tuple n = normalAt(point(0, 1.70711, -0.70711), &s);
+	Tuple n = normalAt(point(0, 1.70711, -0.70711), s);
 
 	EXPECT_TRUE(n == vec(0, 0.70711, -0.70711));
 }
@@ -54,7 +54,7 @@ TEST(LightingTest, NormalTranslated) {
 TEST(LightingTest, NormalScaledRotated) {
 	Sphere s;
 	s.transform(scale(1, 0.5, 1) * rotationZ(PI/5));
-	Tuple n = normalAt(point(0, sqrt(2)/2, -sqrt(2)/2), &s);
+	Tuple n = normalAt(point(0, sqrt(2)/2, -sqrt(2)/2), s);
 
 	EXPECT_TRUE(n == vec(0, 0.97014, -0.24254));
 }
@@ -119,8 +119,9 @@ TEST(LightingTest, Lighting1) {
 	Tuple eye = vec(0, 0, -1);
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 0, -10), Color(1, 1, 1));
+	Sphere s;
 
-	Color result = lighting(m, light, position, eye, normal, false);
+	Color result = lighting(m, s, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(1.9, 1.9, 1.9));
 }
@@ -131,8 +132,9 @@ TEST(LightingTest, Lighting2) {
 	Tuple eye = vec(0, sqrt(2)/2, -sqrt(2)/2);
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 0, -10), Color(1, 1, 1));
+	Sphere s;
 
-	Color result = lighting(m, light, position, eye, normal, false);
+	Color result = lighting(m, s, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(1, 1, 1));
 }
@@ -143,8 +145,9 @@ TEST(LightingTest, Lighting3) {
 	Tuple eye = vec(0, 0, -1);
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 10, -10), Color(1, 1, 1));
+	Sphere s;
 
-	Color result = lighting(m, light, position, eye, normal, false);
+	Color result = lighting(m, s, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(0.7364, 0.7364, 0.7364));
 }
@@ -155,8 +158,9 @@ TEST(LightingTest, Lighting4) {
 	Tuple eye = vec(0, -sqrt(2) / 2, -sqrt(2) / 2);
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 10, -10), Color(1, 1, 1));
+	Sphere s;
 
-	Color result = lighting(m, light, position, eye, normal, false);
+	Color result = lighting(m, s, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(1.6364, 1.6364, 1.6364));
 }
@@ -167,8 +171,9 @@ TEST(LightingTest, Lighting5) {
 	Tuple eye = vec(0, 0, -1);
 	Tuple normal = vec(0, 0, -1);
 	PointLight light(point(0, 0, 10), Color(1, 1, 1));
+	Sphere s;
 
-	Color result = lighting(m, light, position, eye, normal, false);
+	Color result = lighting(m, s, light, position, eye, normal, false);
 
 	EXPECT_TRUE(result == Color(0.1, 0.1, 0.1));
 }

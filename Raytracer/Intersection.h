@@ -8,17 +8,19 @@ class Object; // a forward-declare
 
 struct Intersection
 {
-	double t;
-	Object* object;
+	const double t;
+	const Object& object;
 
-	Intersection(const double, Object* const);
+	Intersection(const double d, const Object& o) : t{ d }, object{ o } {}
 	bool operator==(const Intersection&);
+	Intersection operator=(const Intersection&);
 
+	~Intersection() {}
 };
 
 struct IntersectInfo {
 	double t;
-	Object* object;
+	const Object& object;
 	Tuple point;
 	Tuple overPoint;
 	Tuple eyev;
@@ -26,6 +28,7 @@ struct IntersectInfo {
 	bool inside;
 
 	IntersectInfo(Intersection, Ray);
+	~IntersectInfo();
 };
 
 int hit(const std::deque<Intersection>&);

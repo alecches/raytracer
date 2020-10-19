@@ -1,16 +1,12 @@
 #include <fstream>
 #include <iostream>
-#include "Canvas.h"
-#include "Color.h"
-#include "Matrix.h"
 #include "Sphere.h"
 #include "Plane.h"
-#include "Tuple.h"
-#include "Intersection.h"
 #include "World.h"
 #include "Camera.h"
 #include "Util.h"
 #include "PointLight.h"
+#include "Matrix.h"
 
 using namespace std;
 
@@ -25,8 +21,12 @@ int main() {
 	m1.color(Color(0.1, 1, 0.5));
 	m1.diffuse(0.7);
 	m1.specular(0.3);
+	stripePattern stripes(Color(1, 1, 0), Color(1, 0, 1));
+	stripes.transform(rotationX(PI / 3)*rotationY(PI)*scale(0.1,0.1,0.1));
+	m1.pattern(stripes);
 	s1.material(m1);
 
+	/*
 	Sphere s2;
 	s2.transform(translation(1.5, 0.5, -0.5)*scale(0.5, 0.5, 0.5));
 	Material m2;
@@ -44,17 +44,23 @@ int main() {
 	s3.material(m3);
 
 	Plane p;
+	*/
 
 	w.addObject(s1);
-	w.addObject(s2);
-	w.addObject(s3);
-	w.addObject(p);
+	//w.addObject(s2);
+	//w.addObject(s3);
+	//w.addObject(p);
 	PointLight l(point(-10, 10, -10), Color(1, 1, 1));
 	w.addLight(l);
 
 	Camera c(300, 150, PI / 3);
 	c.transform(view(point(0, 1.5, -5), point(0, 1, 0), vec(0, 1, 0)));
 
+	//m1.~Material();
+	//s1.~Sphere();
+	//std::list<Object*> objs = w.objects();
+	//objs.front()->~Object();
+	//objs.front()->material().~Material();
 	Canvas image = render(c, w);
 
 	ofstream renderFile;

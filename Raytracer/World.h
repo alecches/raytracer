@@ -14,8 +14,9 @@ public:
 
 	World() :objs_{std::list<Object*>()}, lights_{std::list<Light*>()} {}
 
-	std::list<Object*> objects() const { return objs_; } // why pass around a whole list? maybe just provide access function instead
-	std::list<Light*> lights() const {return lights_; }
+	const std::list<Object*>& objects() const { return objs_; } // why pass around a whole list? maybe just provide access function instead // No... just pass a ref to the list
+	const std::list<Light*>& lights() const { return lights_; }
+
 	void addObject(Object& o) { objs_.push_back(o.heapObject()); }
 	void addLight(Light& l) {lights_.push_back(l.heapLight()); } // for now, only one light allowed
 
@@ -26,7 +27,7 @@ public:
 World defaultWorld();
 World defaultWorld(Light& l);
 bool inShadow(const World&, const Tuple&);
-std::deque<Intersection> intersect(const Ray& r, const World& w);
+void intersect(const Ray& r, const World& w, std::deque<Intersection>&);
 Color shadeHit(const World&, const IntersectInfo&);
 Color colorAt(const World&, const Ray&);
 

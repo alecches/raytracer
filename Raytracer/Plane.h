@@ -9,6 +9,6 @@ public:
 	Object* heapObject() const; 
 
 	Tuple normalAt(Tuple) const;;
-	std::deque<Intersection> intersect(const Ray&);
+	void intersect(const Ray&, std::deque<Intersection>& intx) const;
 };
 

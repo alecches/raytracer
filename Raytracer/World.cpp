@@ -57,7 +57,7 @@ World defaultWorld(Light& l) {
 
 bool inShadow(const World& w, const Tuple& point) {
 
-	std::list<Light*> lights = w.lights();
+	const std::list<Light*>& lights = w.lights();
 
 	for (auto l : lights) {
 		Tuple pointToLight = l->position() - point;
@@ -65,7 +65,8 @@ bool inShadow(const World& w, const Tuple& point) {
 		Tuple direction = pointToLight.normalize();
 
 		Ray r(point, direction);
-		std::deque<Intersection> intx = intersect(r, w);
+		std::deque<Intersection> intx;
+		intersect(r, w, intx);
 		int h = hit(intx);
 		if (h < 0);
 		else if (intx[h].t < distance) return true;
@@ -76,34 +77,31 @@ bool inShadow(const World& w, const Tuple& point) {
 
 bool compareT(Intersection a, Intersection b) { return (a.t < b.t); }
 
-std::deque<Intersection> intersect(const Ray& r, const World& w) {
-	std::deque<Intersection> intx = std::deque<Intersection>();
-	std::list<Object*> objs = w.objects();
+void intersect(const Ray& r, const World& w, std::deque<Intersection>& intx) {
 
-	for (auto o : objs) {
-		std::deque<Intersection> intsObj = intersect(r, o);
-		for (auto i : intsObj) {
-			intx.push_front(i); // can do away with these extra moves in the future... just insert obj's into the single deque
-		}
-	}
+	const std::list<Object*>& objs = w.objects();
+
+	for (auto o : objs) intersect(intx, r, *o);
 
 	std::sort(intx.begin(), intx.end(), compareT);
-	return intx;
+
+	return;
 }
 
 Color shadeHit(const World& w, const IntersectInfo& i) {
-	std::list<Light*> lights = w.lights();
+	const std::list<Light*>& lights = w.lights();
 
 	Color c(0, 0, 0);
 	for (auto l : lights) {
-		c = c + lighting(i.object->material(), *l, i.point, i.eyev, i.normalv, inShadow(w, i.overPoint)); // for now, nothing is in shadow
+		c = c + lighting(i.object.material(), i.object, *l, i.point, i.eyev, i.normalv, inShadow(w, i.overPoint)); // refactor IntersectInfo...? something is delete()ing our Materials before the 2nd lighting() call...!
 	}
 
 	return c;
 }
 
 Color colorAt(const World& w, const Ray& r) {
-	std::deque<Intersection> intx = intersect(r, w);
+	std::deque<Intersection> intx;
+	intersect(r, w, intx);
 	int i = hit(intx);
 	if (i < 0) return Color(0, 0, 0);
 	IntersectInfo iInf(intx[i], r);
