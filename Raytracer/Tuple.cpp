@@ -22,7 +22,7 @@ Tuple::Tuple(const Tuple& t) {
 	w = t.w;
 }
 
-bool Tuple::operator==(Tuple t) {
+bool Tuple::operator==(const Tuple& t) const {
 
 	const double E = 0.00001;
 
@@ -34,7 +34,7 @@ bool Tuple::operator==(Tuple t) {
 
 }
 
-Tuple Tuple::operator+(Tuple t) {
+Tuple Tuple::operator+(const Tuple& t) const {
 
 	Tuple sum;
 	sum.x = x + t.x;
@@ -45,7 +45,7 @@ Tuple Tuple::operator+(Tuple t) {
 	return sum;
 }
 
-Tuple Tuple::operator-(Tuple t) {
+Tuple Tuple::operator-(const Tuple& t) const {
 
 	Tuple difference;
 	difference.x = x - t.x;
@@ -56,7 +56,7 @@ Tuple Tuple::operator-(Tuple t) {
 	return difference;
 }
 
-Tuple Tuple::operator-() {
+Tuple Tuple::operator-() const {
 
 	Tuple negative;
 	negative.x = -x;
@@ -67,7 +67,7 @@ Tuple Tuple::operator-() {
 	return negative;
 }
 
-Tuple Tuple::operator*(double scalar) {
+Tuple Tuple::operator*(double scalar) const {
 
 	Tuple product;
 	product.x = scalar * x;
@@ -78,7 +78,7 @@ Tuple Tuple::operator*(double scalar) {
 	return product;
 }
 
-Tuple Tuple::operator/(double scalar) {
+Tuple Tuple::operator/(double scalar) const {
 
 	Tuple dividend;
 	dividend.x = x / scalar;
@@ -90,13 +90,13 @@ Tuple Tuple::operator/(double scalar) {
 
 }
 
-double Tuple::magnitude() {
+double Tuple::magnitude() const {
 
 	return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
 
 }
 
-Tuple Tuple::normalize() {
+Tuple Tuple::normalize() const {
 
 	double m = magnitude();
 	Tuple normalized(x / m, y / m, z / m, w / m);
@@ -104,11 +104,11 @@ Tuple Tuple::normalize() {
 	return normalized;
 }
 
-double Tuple::dot(Tuple t) {
+double Tuple::dot(const Tuple& t) const {
 	return x * t.x + y * t.y + z * t.z + w * t.w;
 }
 
-Tuple Tuple::cross(Tuple t) {
+Tuple Tuple::cross(const Tuple& t) const {
 	Tuple product;
 
 	product.x = y * t.z - z * t.y;
@@ -119,7 +119,7 @@ Tuple Tuple::cross(Tuple t) {
 	return product;
 }
 
-Tuple Tuple::reflect(Tuple normal) {
+Tuple Tuple::reflect(const Tuple& normal) const {
 	if (w == 0) return (*this) - normal * 2 * (*this).dot(normal);
 	else return Tuple(0, 0, 0, 0);
 }

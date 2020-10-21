@@ -46,7 +46,7 @@ double Matrix::operator()(unsigned r, unsigned c) const {
 	return m[r*row + c];
 }
 
-bool Matrix::operator==(const Matrix& mat2) {
+bool Matrix::operator==(const Matrix& mat2) const {
 
 	if (row != mat2.row || col != mat2.col) {
 		return false;

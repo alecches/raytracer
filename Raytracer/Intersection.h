@@ -1,22 +1,23 @@
 #pragma once
-//#include "Sphere.h"
 #include <deque>
 #include "Tuple.h"
 #include "Ray.h"
-//#include "Object.h"
-class Object; // a forward-declare
+class Object;
 
 struct Intersection
 {
-	const double t;
+	double t;
 	const Object& object;
 
-	Intersection(const double d, const Object& o) : t{ d }, object{ o } {}
-	bool operator==(const Intersection&);
+	Intersection(double d, const Object& o) : t{ d }, object{ o } {}
+	bool operator==(const Intersection&) const;
 	Intersection operator=(const Intersection&);
+	//bool operator<(const Intersection&) const;
 
 	~Intersection() {}
 };
+
+bool operator<(const Intersection&, const Intersection&);
 
 struct IntersectInfo {
 	double t;

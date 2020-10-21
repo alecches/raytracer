@@ -27,14 +27,15 @@ TEST(SceneTest, DefaultWorld) {
 	s2.transform(scale(0.5, 0.5, 0.5));
 
 	Light* l2 = w.lights().front();
-	EXPECT_TRUE(&l1 == l2);
+	EXPECT_TRUE(l1 == *l2);
 
 }
 
 TEST(SceneTest, IntersectWorld) {
 	World w = defaultWorld();
 	Ray r = Ray(point(0, 0, -5), vec(0, 0, 1));
-	std::deque<Intersection> intx = intersect(r, w);
+	std::deque<Intersection> intx;
+	intersect(r, w, intx);
 
 	EXPECT_EQ(intx.size(), 4);
 	EXPECT_EQ(intx[0].t, 4);

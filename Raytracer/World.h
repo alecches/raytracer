@@ -18,7 +18,7 @@ public:
 	const std::list<Light*>& lights() const { return lights_; }
 
 	void addObject(Object& o) { objs_.push_back(o.heapObject()); }
-	void addLight(Light& l) {lights_.push_back(l.heapLight()); } // for now, only one light allowed
+	void addLight(Light& l) {lights_.push_back(l.heapLight()); }
 
 	~World();
 

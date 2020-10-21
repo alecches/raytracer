@@ -3,6 +3,7 @@
 #include "Sphere.h"
 #include "Tuple.h"
 #include <algorithm>
+#include <vector>
 
 World defaultWorld() {
 
@@ -81,9 +82,15 @@ void intersect(const Ray& r, const World& w, std::deque<Intersection>& intx) {
 
 	const std::list<Object*>& objs = w.objects();
 
-	for (auto o : objs) intersect(intx, r, *o);
+	for (auto o : objs) intersect(r, *o, intx);
 
-	std::sort(intx.begin(), intx.end(), compareT);
+	std::vector<int> ints = { 3, 65, 0, -3 };
+	std::vector<Intersection> intxVec = std::vector<Intersection>();
+	for (auto i : intx) intxVec.push_back(i);
+	std::sort(intxVec.begin(), intxVec.end());
+	//std::sort(intx.begin(), intx.end(), [](Intersection a, Intersection b) { return a.t < b.t; });
+	std::sort(intx.begin(), intx.end());
+	std::sort(ints.begin(), ints.end());
 
 	return;
 }
@@ -93,7 +100,7 @@ Color shadeHit(const World& w, const IntersectInfo& i) {
 
 	Color c(0, 0, 0);
 	for (auto l : lights) {
-		c = c + lighting(i.object.material(), i.object, *l, i.point, i.eyev, i.normalv, inShadow(w, i.overPoint)); // refactor IntersectInfo...? something is delete()ing our Materials before the 2nd lighting() call...!
+		c = c + lighting(i.object.material(), i.object, *l, i.overPoint, i.eyev, i.normalv, inShadow(w, i.overPoint));
 	}
 
 	return c;

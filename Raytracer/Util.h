@@ -9,4 +9,3 @@ const double PI = 3.141592653589793;
 
 bool doubleEqual(double a, double b);
 
-// this is bad practice... headers files should only contain function decl not definition

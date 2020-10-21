@@ -12,11 +12,11 @@ public:
 	double green() const { return green_; }
 	double blue() const { return blue_; }
 
-	Color operator+(const Color&);
-	Color operator-(const Color&);
-	Color operator*(const Color&);
-	Color operator*(double);
-	bool operator==(const Color&);
+	Color operator+(const Color&) const;
+	Color operator-(const Color&) const;
+	Color operator*(const Color&) const;
+	Color operator*(double) const;
+	bool operator==(const Color&) const;
 
 	void clampRGB();
 };

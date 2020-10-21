@@ -32,7 +32,7 @@ public:
 
 	double& operator()(unsigned, unsigned);
 	double operator()(unsigned, unsigned) const;
-	bool operator==(const Matrix&);
+	bool operator==(const Matrix&) const;
 	Matrix operator*(const Matrix&);
 	Tuple operator*(const Tuple&);
 	Ray operator*(const Ray&);

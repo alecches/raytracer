@@ -5,7 +5,6 @@ Color lighting(const Material& mat, const Object& obj, const Light& light, const
 
 	Color effectiveColor = light.intensity();
 	if (&mat.pattern() != nullptr) {
-		//Color c = mat.pattern()->colorAtObject(position, obj);
 		Color c = mat.pattern().colorAtObject(position, obj);
 		effectiveColor = effectiveColor * c;
 	}

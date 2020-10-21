@@ -1,12 +1,6 @@
 #include "Material.h"
-#include "Ray.h"
-#include "Object.h"
-#include <cmath>
 
-#include <iostream>
-
-
-bool Material::operator==(const Material& mat) {
+bool Material::operator==(const Material& mat) const {
 	if (!(color_ == mat.color())) return false;
 	if (pattern_ != &mat.pattern()) return false;
 	if (ambient_ != mat.ambient()) return false;
@@ -17,14 +11,9 @@ bool Material::operator==(const Material& mat) {
 }
 
 Material::Material(const Material& m): color_{ Color(m.color()) }, ambient_{ m.ambient() }, diffuse_{ m.diffuse() }, specular_{ m.specular() }, shininess_{ m.shininess() } {
-	if (m.pattern_ != nullptr) {
-		std::cout << "WERE HERE";
-		pattern(m.pattern()); //->heapPattern();
-	} 
+	if (m.pattern_ != nullptr) pattern(m.pattern());
 	else pattern_ = nullptr;
 }
-
-
 
 void Material::swap(Material& first, Material& second) {
 	std::swap(first.color_, second.color_);
@@ -35,16 +24,13 @@ void Material::swap(Material& first, Material& second) {
 	std::swap(first.pattern_, second.pattern_);
 }
 
-Material& Material::operator=(Material& m) {
-	swap(*this, m);
+Material& Material::operator=(const Material& m) {
+	Material tempMat(m); 
+	swap(*this, tempMat);
 	return *this;
 }
 
 Material::~Material() {
-	
-	int x;
-	int y;
-	std::cout << "1 ";
 	if (pattern_ != nullptr) delete pattern_;
 }
 

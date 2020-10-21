@@ -25,8 +25,9 @@ int main() {
 	stripes.transform(rotationX(PI / 3)*rotationY(PI)*scale(0.1,0.1,0.1));
 	m1.pattern(stripes);
 	s1.material(m1);
+	
 
-	/*
+	
 	Sphere s2;
 	s2.transform(translation(1.5, 0.5, -0.5)*scale(0.5, 0.5, 0.5));
 	Material m2;
@@ -44,23 +45,23 @@ int main() {
 	s3.material(m3);
 
 	Plane p;
-	*/
+	
+	checkerPattern checkers(Color(0, 0, 0), Color(1, 1, 1));
+	m3.pattern(checkers);
+	m3.color(Color(0, 0, 0));
+	p.material(m3);
+	
 
 	w.addObject(s1);
-	//w.addObject(s2);
-	//w.addObject(s3);
-	//w.addObject(p);
+	w.addObject(s2);
+	w.addObject(s3);
+	w.addObject(p);
 	PointLight l(point(-10, 10, -10), Color(1, 1, 1));
 	w.addLight(l);
 
 	Camera c(300, 150, PI / 3);
 	c.transform(view(point(0, 1.5, -5), point(0, 1, 0), vec(0, 1, 0)));
 
-	//m1.~Material();
-	//s1.~Sphere();
-	//std::list<Object*> objs = w.objects();
-	//objs.front()->~Object();
-	//objs.front()->material().~Material();
 	Canvas image = render(c, w);
 
 	ofstream renderFile;

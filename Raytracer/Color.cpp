@@ -15,7 +15,7 @@ void Color::clampRGB() {
 	blue_ = clamp(blue_);
 }
 
-bool Color::operator==(const Color& c) {
+bool Color::operator==(const Color& c) const {
 	const double E = 0.00001;
 
 	if (abs(red_ - c.red_) > E) return false;
@@ -25,7 +25,7 @@ bool Color::operator==(const Color& c) {
 }
 
 
-Color Color::operator+(const Color& c2) {
+Color Color::operator+(const Color& c2) const {
 	
 	double r = red_ + c2.red();
 	double g = green_ + c2.green();
@@ -34,7 +34,7 @@ Color Color::operator+(const Color& c2) {
 	return Color(r, g, b);
 }
 
-Color Color::operator-(const Color& c2) {
+Color Color::operator-(const Color& c2) const {
 
 	double r = red_ - c2.red();
 	double g = green_ - c2.green();
@@ -43,7 +43,7 @@ Color Color::operator-(const Color& c2) {
 	return Color(r, g, b);
 }
 
-Color Color::operator*(const Color& c2) {
+Color Color::operator*(const Color& c2) const {
 	double r = red_ * c2.red();
 	double g = green_ * c2.green();
 	double b = blue_ * c2.blue();
@@ -51,7 +51,7 @@ Color Color::operator*(const Color& c2) {
 	return Color(r, g, b);
 }
 
-Color Color::operator*(double scalar) {
+Color Color::operator*(double scalar) const {
 
 	double r = red_ * scalar;
 	double g = green_ * scalar;

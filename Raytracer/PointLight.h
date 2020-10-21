@@ -1,5 +1,4 @@
-#pragma once
-
+#pragma onceS
 #include "Light.h"
 
 class PointLight : public Light
@@ -13,7 +12,7 @@ public:
 
 	Color intensity() const { return intensity_; }
 	Tuple position() const { return position_; }
-	bool operator==(const Light& l) { return (position_ == l.position() && intensity_ == l.intensity()); }
+	bool operator==(const Light& l) const { return (position_ == l.position() && intensity_ == l.intensity()); }
 
 	Light* heapLight() const { return new PointLight(*this); }
 

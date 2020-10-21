@@ -44,8 +44,6 @@ std::string Canvas::toPPM() {
 
 		for (int j = 0; j < width_; j++) {
 
-			//int len = line.length() % 70;
-
 			int index = i * width_ + j;
 			Color c = pixels[index];
 			std::string red = std::to_string((int)round(c.red() * 255));

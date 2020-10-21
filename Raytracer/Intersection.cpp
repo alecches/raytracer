@@ -26,11 +26,19 @@ Intersection Intersection::operator=(const Intersection& i) {
 	return Intersection(i.t, i.object);
 }
 
-bool Intersection::operator==(const Intersection& i) {
+bool Intersection::operator==(const Intersection& i) const {
 	
 	if (t != i.t)return false;
 	if (&object != &(i.object)) return false;
 	return true;
+}
+
+/*bool Intersection::operator<(const Intersection& i) const {
+	return t < i.t;
+}*/
+
+bool operator<(const Intersection& i1, const Intersection& i2) {
+	return i1.t < i2.t;
 }
 
 IntersectInfo::IntersectInfo(Intersection i, Ray r) : t{ i.t }, object{ i.object } {
@@ -52,3 +60,4 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) : t{ i.t }, object{ i.object
 IntersectInfo::~IntersectInfo(){
 	
 }
+
