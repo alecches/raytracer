@@ -1,7 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Object.h"
-#include "../Raytracer/Plane.h"
-#include "../Raytracer/Plane.cpp"
 
 TEST(PlaneTest, Normal) {
 	Plane p;

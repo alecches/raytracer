@@ -1,8 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Matrix.h"
-#include "../Raytracer/Matrix.cpp"
-#include "../Raytracer/Util.h"
-#include "../Raytracer/Util.cpp"
 
 TEST(MatrixTest, Decl44) {
 	Matrix mat(4, 4);

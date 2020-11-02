@@ -1,12 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Material.h"
-#include "../Raytracer/Tuple.h"
-#include "../Raytracer/World.h"
-#include "../Raytracer/Intersection.h"
-#include "../Raytracer/Sphere.h"
-#include "../Raytracer/Util.h"
-#include "../Raytracer/PointLight.h"
-
 
 TEST(ShadowTest, InShadow) {
 	Tuple eyev(vec(0, 0, -1));

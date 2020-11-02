@@ -1,12 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Sphere.h"
-#include "../Raytracer/Tuple.h"
-#include "../Raytracer/Util.h"
-#include "../Raytracer/PointLight.h"
-#include "../Raytracer/Material.h"
-#include "../Raytracer/Material.cpp"
-#include "../Raytracer/Light.h"
-#include "../Raytracer/Light.cpp"
 
 TEST(LightingTest, SphereNormX) {
 	Sphere s;

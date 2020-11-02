@@ -1,12 +1,13 @@
 #include <fstream>
 #include <iostream>
-#include "Sphere.h"
-#include "Plane.h"
-#include "World.h"
-#include "Camera.h"
-#include "Util.h"
-#include "PointLight.h"
-#include "Matrix.h"
+#include "object/Sphere.h"
+#include "object/Plane.h"
+#include "world/World.h"
+#include "render/Camera.h"
+#include "struct/Matrix.h"
+#include "struct/Util.h"
+#include "light/PointLight.h"
+
 
 using namespace std;
 

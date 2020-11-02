@@ -1,6 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Color.h"
-#include "../Raytracer/Color.cpp"
 
 TEST(ColorTest, Constructor) {
 	Color c(0.8, 0.4, 1.2);

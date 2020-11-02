@@ -1,14 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Ray.h"
-#include "../Raytracer/Ray.cpp"
-#include "../Raytracer/Tuple.h"
-#include "../Raytracer/Sphere.h"
-#include "../Raytracer/Sphere.cpp"
-#include "../Raytracer/Intersection.h"
-#include "../Raytracer/Intersection.cpp"
-#include "../Raytracer/Matrix.h"
-#include "../Raytracer/Object.cpp"
-
 
 TEST(RayTest, Constructor) {
 	Tuple p(1, 2, 3, 1);

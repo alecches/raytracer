@@ -1,7 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Matrix.h"
-#include "../Raytracer/Util.h"
-
 
 TEST(TransformTest, Translate) {
 

@@ -1,9 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Pattern.h"
-#include "../Raytracer/Pattern.cpp"
-#include "../Raytracer/Light.h"
-#include "../Raytracer/PointLight.h"
-#include "../Raytracer/Sphere.h"
 
 class PatternTest : public ::testing::Test {
 protected:

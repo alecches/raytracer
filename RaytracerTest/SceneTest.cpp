@@ -1,10 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/World.h"
-#include "../Raytracer/Camera.h"
-#include "../Raytracer/Camera.cpp"
-#include "../Raytracer/Util.h"
-#include "../Raytracer/World.cpp"
-#include "../Raytracer/Canvas.h"
 
 
 TEST(SceneTest, WorldConstructor) {

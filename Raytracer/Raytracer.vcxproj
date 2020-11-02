@@ -124,44 +124,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Canvas.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Intersection.cpp" />
+    <ClCompile Include="render\Camera.cpp" />
+    <ClCompile Include="render\Canvas.cpp" />
+    <ClCompile Include="property\Color.cpp" />
+    <ClCompile Include="struct\Intersection.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Material.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="Ray.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Light.cpp" />
-    <ClCompile Include="Pattern.cpp" />
-    <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="Util.cpp" />
-    <ClCompile Include="Tuple.cpp" />
-    <ClCompile Include="World.cpp" />
+    <ClCompile Include="property\Material.cpp" />
+    <ClCompile Include="struct\Matrix.cpp" />
+    <ClCompile Include="object\Plane.cpp" />
+    <ClCompile Include="light\PointLight.cpp" />
+    <ClCompile Include="world\Ray.cpp" />
+    <ClCompile Include="object\Object.cpp" />
+    <ClCompile Include="light\Light.cpp" />
+    <ClCompile Include="property\Pattern.cpp" />
+    <ClCompile Include="object\Sphere.cpp" />
+    <ClCompile Include="struct\Util.cpp" />
+    <ClCompile Include="struct\Tuple.cpp" />
+    <ClCompile Include="world\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Canvas.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="Pattern.h" />
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="Intersection.h" />
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="Plane.h" />
-    <ClInclude Include="PointLight.h" />
-    <ClInclude Include="Ray.h" />
-    <ClInclude Include="Sphere.h" />
-    <ClInclude Include="Util.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Tuple.h" />
-    <ClInclude Include="World.h" />
+    <ClInclude Include="render\Camera.h" />
+    <ClInclude Include="render\Canvas.h" />
+    <ClInclude Include="property\Color.h" />
+    <ClInclude Include="property\Pattern.h" />
+    <ClInclude Include="light\Light.h" />
+    <ClInclude Include="object\Object.h" />
+    <ClInclude Include="struct\Intersection.h" />
+    <ClInclude Include="property\Material.h" />
+    <ClInclude Include="object\Plane.h" />
+    <ClInclude Include="light\PointLight.h" />
+    <ClInclude Include="world\Ray.h" />
+    <ClInclude Include="object\Sphere.h" />
+    <ClInclude Include="struct\Util.h" />
+    <ClInclude Include="struct\Matrix.h" />
+    <ClInclude Include="struct\Tuple.h" />
+    <ClInclude Include="world\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

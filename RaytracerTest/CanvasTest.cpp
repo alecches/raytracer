@@ -1,8 +1,4 @@
 #include "pch.h"
-#include "../Raytracer/Color.h"
-#include "../Raytracer/Canvas.h"
-#include "../Raytracer/Canvas.cpp"
-
 
 TEST(CanvasTest, Constructor) {
 	Canvas c(10, 20);
