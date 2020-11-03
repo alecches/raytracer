@@ -22,7 +22,7 @@ int main() {
 	m1.color(Color(0.1, 1, 0.5));
 	m1.diffuse(0.7);
 	m1.specular(0.3);
-	stripePattern stripes(Color(1, 1, 0), Color(1, 0, 1));
+	stripePattern stripes(Color(1, 0, 0), Color(0, 0, 1));
 	stripes.transform(rotationX(PI / 3)*rotationY(PI)*scale(0.1,0.1,0.1));
 	m1.pattern(stripes);
 	s1.material(m1);
@@ -35,6 +35,7 @@ int main() {
 	m2.color(Color(0.5, 1, 0.1));
 	m2.diffuse(0.7);
 	m2.specular(0.3);
+	m2.reflective(0.8);
 	s2.material(m2);
 
 	Sphere s3;

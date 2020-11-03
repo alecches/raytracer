@@ -8,18 +8,15 @@
 
 class Object {
 protected:
-	Tuple position_;
 	Matrix transform_;
 	Material mat_;
 
 public:
 
-	Object() : position_{ Tuple(0,0,0,1) }, transform_{ Matrix(identity()) }, mat_{ Material() } {}
-	Object(const Object& o) : position_{ o.position() }, transform_{ o.transform() }, mat_{ o.material() } {}
+	Object() : transform_{ Matrix(identity()) }, mat_{ Material() } {}
+	Object(const Object& o) : transform_{ o.transform() }, mat_{ o.material() } {}
 	virtual Object* heapObject() const = 0;
 
-	Tuple position() const { return position_; }
-	void position(const Tuple& t) { position_ = t; }
 	Matrix transform() const { return transform_; }
 	void transform(const Matrix& m) { transform_ = m; }
 	const Material& material() const { return mat_; }

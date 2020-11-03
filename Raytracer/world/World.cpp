@@ -95,22 +95,36 @@ void intersect(const Ray& r, const World& w, std::deque<Intersection>& intx) {
 	return;
 }
 
-Color shadeHit(const World& w, const IntersectInfo& i) {
+Color shadeHit(const World& w, const IntersectInfo& i, int remainingDepth) {
 	const std::list<Light*>& lights = w.lights();
 
-	Color c(0, 0, 0);
+	Color surface(0, 0, 0);
 	for (auto l : lights) {
-		c = c + lighting(i.object.material(), i.object, *l, i.overPoint, i.eyev, i.normalv, inShadow(w, i.overPoint));
+		surface = surface + lighting(i.object.material(), i.object, *l, i.overPoint, i.eyev, i.normalv, inShadow(w, i.overPoint));
 	}
 
-	return c;
+	Color reflected = reflectedColor(w, i, remainingDepth);
+
+	return surface + reflected;
 }
 
-Color colorAt(const World& w, const Ray& r) {
+Color colorAt(const World& w, const Ray& r, int remainingDepth) {
 	std::deque<Intersection> intx;
 	intersect(r, w, intx);
 	int i = hit(intx);
 	if (i < 0) return Color(0, 0, 0);
 	IntersectInfo iInf(intx[i], r);
-	return shadeHit(w, iInf);
+	return shadeHit(w, iInf, remainingDepth);
+}
+
+Color reflectedColor(const World& w, const IntersectInfo& iInf, int remainingDepth) {
+
+	if (remainingDepth < 1) return Color(0, 0, 0);
+	if (iInf.object.material().reflective() == 0) return Color(0, 0, 0); // . . . . not good
+
+	Ray reflectedRay(iInf.overPoint, iInf.reflectv);
+	Color reflectedColor = colorAt(w, reflectedRay, --remainingDepth);
+
+	return reflectedColor * (iInf.object.material().reflective()); // so many dot operators..
+
 }

@@ -46,6 +46,7 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) : t{ i.t }, object{ i.object
 	point = Tuple(r.position(t));
 	eyev = Tuple(-r.direction());
 	normalv = Tuple(normalAt(point, object));
+	reflectv = r.direction().reflect(normalv);
 
 	if (normalv.dot(eyev) < 0) {
 		inside = true;

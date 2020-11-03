@@ -26,6 +26,7 @@ struct IntersectInfo {
 	Tuple overPoint;
 	Tuple eyev;
 	Tuple normalv;
+	Tuple reflectv;
 	bool inside;
 
 	IntersectInfo(Intersection, Ray);

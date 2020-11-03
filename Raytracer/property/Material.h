@@ -8,10 +8,10 @@ class Material
 private:
 	Color color_;
 	Pattern* pattern_;
-	double ambient_, diffuse_, specular_, shininess_;
+	double ambient_, diffuse_, specular_, shininess_, reflective_;
 public:
 
-	Material() :color_{ Color(1, 1, 1) }, pattern_{nullptr}, ambient_{ 0.1 }, diffuse_{ 0.9 }, specular_{ 0.9 }, shininess_{ 200.0 } { }
+	Material() :color_{ Color(1, 1, 1) }, pattern_{ nullptr }, ambient_{ 0.1 }, diffuse_{ 0.9 }, specular_{ 0.9 }, shininess_{ 200.0 }, reflective_{ 0 } { }
 	Material(const Material& m);
 	Material& operator=(const Material& m);
 	void swap(Material& first, Material& second);
@@ -27,6 +27,8 @@ public:
 	double specular() const { return specular_; }
 	void specular(double d) { specular_ = d; }
 	double shininess() const { return shininess_; }
+	void reflective(double d) { reflective_ = d; }
+	double reflective() const { return reflective_; }
 
 	bool operator==(const Material&) const;
 	~Material();

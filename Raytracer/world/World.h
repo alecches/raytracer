@@ -28,6 +28,7 @@ World defaultWorld();
 World defaultWorld(Light& l);
 bool inShadow(const World&, const Tuple&);
 void intersect(const Ray& r, const World& w, std::deque<Intersection>&);
-Color shadeHit(const World&, const IntersectInfo&);
-Color colorAt(const World&, const Ray&);
+Color shadeHit(const World&, const IntersectInfo&, int remainingDepth = 5);
+Color colorAt(const World&, const Ray&, int remainingDepth = 5);
+Color reflectedColor(const World&, const IntersectInfo&, int remainingDepth = 5);
 
