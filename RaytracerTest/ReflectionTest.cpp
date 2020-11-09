@@ -8,7 +8,7 @@ TEST(ReflectionTest, MaterialAttrib) {
 TEST(ReflectionTest, ReflectV) {
 	Plane p;
 	Ray r(point(0, 1, -1), vec(0, -sqrt(2) / 2, sqrt(2) / 2));
-	Intersection i(sqrt(2), p);
+	Intersection i(sqrt(2), &p);
 	IntersectInfo iInf(i, r);
 
 	EXPECT_TRUE(iInf.reflectv == vec(0, sqrt(2) / 2, sqrt(2) / 2));
@@ -21,7 +21,7 @@ TEST(ReflectionTest, Nonreflective) {
 	m.ambient(1);
 	w.objects().back()->material(m);
 	Object* obj = w.objects().back();
-	Intersection i(1, *obj);
+	Intersection i(1, obj);
 	IntersectInfo iInf(i, r);
 	Color refC = reflectedColor(w, iInf);
 	EXPECT_TRUE(refC == Color(0, 0, 0));
@@ -40,7 +40,7 @@ TEST(ReflectionTest, Reflective) {
 	w.addObject(p);
 
 	Ray r(point(0, 0, -3), vec(0, -sqrt(2) / 2, sqrt(2) / 2));
-	Intersection i(sqrt(2), p);
+	Intersection i(sqrt(2), &p);
 	IntersectInfo iInf(i, r);
 	Color refC = reflectedColor(w, iInf);
 
@@ -60,7 +60,7 @@ TEST(ReflectionTest, SurfaceAndReflective) {
 	w.addObject(p);
 
 	Ray r(point(0, 0, -3), vec(0, -sqrt(2) / 2, sqrt(2) / 2));
-	Intersection i(sqrt(2), p);
+	Intersection i(sqrt(2), &p);
 	IntersectInfo iInf(i, r);
 	Color sumC = shadeHit(w, iInf);
 
@@ -101,7 +101,7 @@ TEST(ReflectionTest, LimitRecursion){
 	w.addObject(p);
 
 	Ray r(point(0, 0, -3), vec(0, -sqrt(2) / 2, sqrt(2) / 2));
-	Intersection i(sqrt(2), p);
+	Intersection i(sqrt(2), &p);
 	IntersectInfo iInf(i, r);
 	Color sumC = reflectedColor(w, iInf, 0);
 

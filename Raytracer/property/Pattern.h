@@ -26,6 +26,16 @@ public:
 	virtual ~Pattern() {}
 };
 
+class testPattern : public Pattern {
+
+public:
+	testPattern() : Pattern(Color(0,0,0), Color(1,1,1)) {}
+	testPattern(const testPattern& p) : Pattern(p) {}
+	Pattern* heapPattern() const { return new testPattern(*this); }
+
+	Color colorAt(const Tuple& p) const { return Color(p.x, p.y, p.z); }
+};
+
 class stripePattern : public Pattern {
 
 public:

@@ -3,7 +3,7 @@
 #include "../struct/Matrix.h"
 #include "../struct/Intersection.h"
 
-void intersect(const Ray& r, const Object& o, std::deque<Intersection>& intx) {
+void intersect(const Ray& r, const Object& o, std::vector<Intersection>& intx) {
 
 	Ray rayT = o.transform().inverse() * r;
 	o.intersect(rayT, intx);

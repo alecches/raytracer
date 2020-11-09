@@ -8,7 +8,7 @@ Object* Sphere::heapObject() const {
 	return new Sphere(*this);
 }
 
-void Sphere::intersect(const Ray& rayT, std::deque<Intersection>& intx) const {
+void Sphere::intersect(const Ray& rayT, std::vector<Intersection>& intx) const {
 
 	Tuple origin = rayT.origin();
 	Tuple dir = rayT.direction();
@@ -21,8 +21,19 @@ void Sphere::intersect(const Ray& rayT, std::deque<Intersection>& intx) const {
 	double discriminant = pow(b, 2) - 4 * a * c;
 	if (discriminant < 0) return;
 
-	intx.push_front(Intersection((-b + sqrt(discriminant)) / (2.0 * a), *this));
-	intx.push_front(Intersection((-b - sqrt(discriminant)) / (2.0 * a), *this));
+	intx.push_back(Intersection((-b + sqrt(discriminant)) / (2.0 * a), this));
+	intx.push_back(Intersection((-b - sqrt(discriminant)) / (2.0 * a), this));
 
 	return;
+}
+
+Sphere glassSphere(double n) {
+
+	Material m;
+	m.transparency(1.0);
+	m.refractiveIndex(n);
+	Sphere s;
+	s.material(m);
+
+	return s;
 }

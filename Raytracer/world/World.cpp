@@ -66,7 +66,7 @@ bool inShadow(const World& w, const Tuple& point) {
 		Tuple direction = pointToLight.normalize();
 
 		Ray r(point, direction);
-		std::deque<Intersection> intx;
+		std::vector<Intersection> intx;
 		intersect(r, w, intx);
 		int h = hit(intx);
 		if (h < 0);
@@ -76,21 +76,20 @@ bool inShadow(const World& w, const Tuple& point) {
 	return false;
 }
 
-bool compareT(Intersection a, Intersection b) { return (a.t < b.t); }
+bool compareT(const Intersection& a, const Intersection& b) { return a.t < b.t; }
+bool compareD(const double& a, const double& b) { return (a < b); }
 
-void intersect(const Ray& r, const World& w, std::deque<Intersection>& intx) {
+void intersect(const Ray& r, const World& w, std::vector<Intersection>& intx) {
 
 	const std::list<Object*>& objs = w.objects();
 
 	for (auto o : objs) intersect(r, *o, intx);
 
-	std::vector<int> ints = { 3, 65, 0, -3 };
-	std::vector<Intersection> intxVec = std::vector<Intersection>();
-	for (auto i : intx) intxVec.push_back(i);
-	std::sort(intxVec.begin(), intxVec.end());
+	std::vector<double> ints = { 6, 4, 5.5, 4.5 };
 	//std::sort(intx.begin(), intx.end(), [](Intersection a, Intersection b) { return a.t < b.t; });
-	std::sort(intx.begin(), intx.end());
-	std::sort(ints.begin(), ints.end());
+	std::sort(intx.begin(), intx.end(), compareT);
+
+	std::sort(ints.begin(), ints.end(), compareD);
 
 	return;
 }
@@ -99,21 +98,30 @@ Color shadeHit(const World& w, const IntersectInfo& i, int remainingDepth) {
 	const std::list<Light*>& lights = w.lights();
 
 	Color surface(0, 0, 0);
+	//if (lights.size() == 0) surface = i.object.material().ambient();
 	for (auto l : lights) {
 		surface = surface + lighting(i.object.material(), i.object, *l, i.overPoint, i.eyev, i.normalv, inShadow(w, i.overPoint));
 	}
 
 	Color reflected = reflectedColor(w, i, remainingDepth);
 
-	return surface + reflected;
+	Color refracted = refractedColor(w, i, remainingDepth);
+
+	Material m = i.object.material();
+	if (m.reflective() > 0 && m.transparency() > 0) {
+		double reflectance = fresnel(i);
+		return surface + reflected * reflectance + refracted * (1 - reflectance);
+	}
+
+	return surface + reflected + refracted;
 }
 
 Color colorAt(const World& w, const Ray& r, int remainingDepth) {
-	std::deque<Intersection> intx;
+	std::vector<Intersection> intx;
 	intersect(r, w, intx);
 	int i = hit(intx);
 	if (i < 0) return Color(0, 0, 0);
-	IntersectInfo iInf(intx[i], r);
+	IntersectInfo iInf(intx[i], r, intx);
 	return shadeHit(w, iInf, remainingDepth);
 }
 
@@ -127,4 +135,23 @@ Color reflectedColor(const World& w, const IntersectInfo& iInf, int remainingDep
 
 	return reflectedColor * (iInf.object.material().reflective()); // so many dot operators..
 
+}
+
+Color refractedColor(const World& w, const IntersectInfo& iInf, int remainingDepth) {
+
+	// is the material opaque ? are we at the max depth ?
+	if (iInf.object.material().transparency() == 0 || remainingDepth == 0) return Color(0, 0, 0);
+
+	//check for total internal reflection
+	double nRatio = iInf.n1 / iInf.n2;
+	double cosI = iInf.eyev.dot(iInf.normalv);
+	double sin2T = pow(nRatio, 2) * (1 - pow(cosI, 2));
+	if (sin2T > 1) return Color(0, 0, 0);
+
+	// create the refracted ray
+	double cosT = sqrt(1 - sin2T);
+	Tuple dir = iInf.normalv * (nRatio * cosI - cosT) - iInf.eyev * nRatio;
+	Ray refractedRay(iInf.underPoint, dir);
+
+	return colorAt(w, refractedRay, --remainingDepth) * iInf.object.material().transparency();
 }

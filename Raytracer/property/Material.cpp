@@ -12,7 +12,7 @@ bool Material::operator==(const Material& mat) const {
 }
 
 Material::Material(const Material& m): color_{ Color(m.color()) }, ambient_{ m.ambient() }, diffuse_{ m.diffuse() }, 
-specular_{ m.specular() }, shininess_{ m.shininess() }, reflective_{ m.reflective() } {
+specular_{ m.specular() }, shininess_{ m.shininess() }, reflective_{ m.reflective() }, transparency_{ m.transparency() }, refractiveIndex_{ m.refractiveIndex() } {
 	if (m.pattern_ != nullptr) pattern(m.pattern());
 	else pattern_ = nullptr;
 }
@@ -25,6 +25,8 @@ void Material::swap(Material& first, Material& second) {
 	std::swap(first.shininess_, second.shininess_);
 	std::swap(first.pattern_, second.pattern_);
 	std::swap(first.reflective_, second.reflective_);
+	std::swap(first.transparency_, second.transparency_);
+	std::swap(first.refractiveIndex_, second.refractiveIndex_);
 }
 
 Material& Material::operator=(const Material& m) {
@@ -34,6 +36,7 @@ Material& Material::operator=(const Material& m) {
 }
 
 Material::~Material() {
+	
 	if (pattern_ != nullptr) delete pattern_;
 }
 
