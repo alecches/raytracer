@@ -24,6 +24,8 @@
 #include "../Raytracer/object/Sphere.cpp"
 #include "../Raytracer/object/Plane.cpp"
 #include "../Raytracer/object/Cube.cpp"
+#include "../Raytracer/object/Cylinder.cpp"
+#include "../Raytracer/object/Cone.cpp"
 
 #include "../Raytracer/light/Light.cpp"
 #include "../Raytracer/light/PointLight.cpp"

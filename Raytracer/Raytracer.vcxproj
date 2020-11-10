@@ -124,6 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="object\Cone.cpp" />
+    <ClCompile Include="object\Cylinder.cpp" />
     <ClCompile Include="object\Cube.cpp" />
     <ClCompile Include="render\Camera.cpp" />
     <ClCompile Include="render\Canvas.cpp" />
@@ -147,6 +149,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="object\Cone.h" />
+    <ClInclude Include="object\Cylinder.h" />
     <ClInclude Include="object\Cube.h" />
     <ClInclude Include="render\Camera.h" />
     <ClInclude Include="render\Canvas.h" />

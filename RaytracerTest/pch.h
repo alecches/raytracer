@@ -28,6 +28,8 @@
 #include "../Raytracer/object/Sphere.h"
 #include "../Raytracer/object/Plane.h"
 #include "../Raytracer/object/Cube.h"
+#include "../Raytracer/object/Cylinder.h"
+#include "../Raytracer/object/Cone.h"
 
 #include "../Raytracer/light/Light.h"
 #include "../Raytracer/light/PointLight.h"
