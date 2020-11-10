@@ -23,6 +23,7 @@
 #include "../Raytracer/object/Object.cpp"
 #include "../Raytracer/object/Sphere.cpp"
 #include "../Raytracer/object/Plane.cpp"
+#include "../Raytracer/object/Cube.cpp"
 
 #include "../Raytracer/light/Light.cpp"
 #include "../Raytracer/light/PointLight.cpp"

@@ -53,6 +53,7 @@
     <ClCompile Include="ShadowTest.cpp" />
     <ClCompile Include="ReflectionTest.cpp" />
     <ClCompile Include="RefractionTest.cpp" />
+    <ClCompile Include="CubeTest.cpp" />
     <ClCompile Include="TransformTest.cpp" />
     <ClCompile Include="TupleTest.cpp" />
     <ClCompile Include="VectorTest.cpp" />

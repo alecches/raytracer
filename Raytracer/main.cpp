@@ -2,6 +2,7 @@
 #include <iostream>
 #include "object/Sphere.h"
 #include "object/Plane.h"
+#include "object/Cube.h"
 #include "world/World.h"
 #include "render/Camera.h"
 #include "struct/Matrix.h"
@@ -16,13 +17,11 @@ int main() {
 
 	World w;
 
-	Sphere s;
-	s.transform(translation(0, 1, 1));
-	Material sMat;
-	sMat.color(Color(0, 0, 0.76));
-	sMat.reflective(0.9);
-	sMat.transparency(0.6);
-	s.material(sMat);
+	Cube cube;
+	Material mCube;
+	mCube.color(Color(0.8, 0.8, 0.4));
+	cube.material(mCube);
+	cube.transform(scale(10, 10, 10));
 
 	Plane floor;
 	Material floorMat;
@@ -30,10 +29,11 @@ int main() {
 	floorMat.pattern(checkers);
 	floor.material(floorMat);
 
-	PointLight l(point(-10, 10, -10), Color(1, 1, 1));
+	PointLight l(point(-8, 8, -8), Color(1, 1, 1));
 	w.addLight(l);
-	w.addObject(s);
+	//w.addObject(s);
 	w.addObject(floor);
+	w.addObject(cube);
 
 	Camera c(300, 150, PI / 3);
 	c.transform(view(point(0, 1.5, -5), point(0, 1, 0), vec(0, 1, 0)));

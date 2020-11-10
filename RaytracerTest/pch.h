@@ -27,6 +27,7 @@
 #include "../Raytracer/object/Object.h"
 #include "../Raytracer/object/Sphere.h"
 #include "../Raytracer/object/Plane.h"
+#include "../Raytracer/object/Cube.h"
 
 #include "../Raytracer/light/Light.h"
 #include "../Raytracer/light/PointLight.h"
