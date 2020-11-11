@@ -9,7 +9,7 @@ Object* Plane::heapObject() const {
 	return new Plane(*this);
 }
 
-void Plane::intersect(const Ray& rayT, std::vector<Intersection>& intx) const {
+void Plane::localIntersect(const Ray& rayT, std::vector<Intersection>& intx) const {
 
 	Tuple origin = rayT.origin();
 	Tuple dir = rayT.direction();

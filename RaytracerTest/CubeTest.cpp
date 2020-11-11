@@ -13,7 +13,7 @@ TEST(CubeTest, Intersect) {
 
 	for (int i = 0; i < 7; i++) {
 		std::vector<Intersection> intx;
-		c.intersect(rays[i], intx);
+		c.localIntersect(rays[i], intx);
 		EXPECT_EQ(intx.size(), 2);
 		if (i == 6) {
 			EXPECT_EQ(intx[0].t, -1);
@@ -39,7 +39,7 @@ TEST(CubeTest, Misses) {
 
 	for (int i = 0; i < 6; i++) {
 		std::vector<Intersection> intx;
-		c.intersect(rays[i], intx);
+		c.localIntersect(rays[i], intx);
 		EXPECT_EQ(intx.size(), 0);
 	}
 }

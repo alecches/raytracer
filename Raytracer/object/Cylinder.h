@@ -16,7 +16,7 @@ public:
 	Cylinder(const Cylinder& s) : closed{ s.closed }, minimum_ { s.minimum() }, maximum_{ s.maximum() }, Object(s) {}
 
 	Tuple normalAt(Tuple p) const;
-	void intersect(const Ray&, std::vector<Intersection>&) const;
+	void localIntersect(const Ray&, std::vector<Intersection>&) const;
 	double maximum() const { return maximum_; }
 	void maximum(double d) {maximum_ = d;}
 	double minimum() const {return minimum_;}

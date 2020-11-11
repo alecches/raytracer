@@ -11,7 +11,7 @@ Tuple Cylinder::normalAt(Tuple objectPoint) const {
 	return vec(objectPoint.x, 0, objectPoint.z);
 }
 
-void Cylinder::intersect(const Ray& r, std::vector<Intersection>& intx) const {
+void Cylinder::localIntersect(const Ray& r, std::vector<Intersection>& intx) const {
 	
 	Tuple origin = r.origin();
 	Tuple direction = r.direction();

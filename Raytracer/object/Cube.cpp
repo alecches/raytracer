@@ -46,7 +46,7 @@ std::pair<double, double> checkAxis(double origin, double direction) {
 	return std::pair<double, double>(tmin, tmax);
 }
 
-void Cube::intersect(const Ray& r, std::vector<Intersection>& intx) const {
+void Cube::localIntersect(const Ray& r, std::vector<Intersection>& intx) const {
 
 	std::pair<double, double> x = checkAxis(r.origin().x, r.direction().x);
 	std::pair<double, double> y = checkAxis(r.origin().y, r.direction().y);

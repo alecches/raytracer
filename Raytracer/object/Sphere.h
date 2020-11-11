@@ -17,7 +17,7 @@ public:
 	Sphere(const Sphere& s) : Object(s) {}
 
 	Tuple normalAt(Tuple p) const;
-	void intersect(const Ray&, std::vector<Intersection>&) const;
+	void localIntersect(const Ray&, std::vector<Intersection>&) const;
 
 	Object* heapObject() const;
 };

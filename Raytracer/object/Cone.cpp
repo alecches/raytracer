@@ -13,7 +13,7 @@ Tuple Cone::normalAt(Tuple objectPoint) const {
 	return vec(objectPoint.x, y, objectPoint.z);
 }
 
-void Cone::intersect(const Ray& r, std::vector<Intersection>& intx) const {
+void Cone::localIntersect(const Ray& r, std::vector<Intersection>& intx) const {
 
 	Tuple origin = r.origin();
 	Tuple direction = r.direction();

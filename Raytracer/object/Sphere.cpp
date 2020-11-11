@@ -8,7 +8,7 @@ Object* Sphere::heapObject() const {
 	return new Sphere(*this);
 }
 
-void Sphere::intersect(const Ray& rayT, std::vector<Intersection>& intx) const {
+void Sphere::localIntersect(const Ray& rayT, std::vector<Intersection>& intx) const {
 
 	Tuple origin = rayT.origin();
 	Tuple dir = rayT.direction();

@@ -9,7 +9,7 @@ TEST(CylinderTest, Misses) {
 
 	for (Ray r : rays) {
 		std::vector<Intersection> intx;
-		cyl.intersect(r, intx);
+		cyl.localIntersect(r, intx);
 		EXPECT_EQ(intx.size(), 0);
 	}
 }
@@ -25,7 +25,7 @@ TEST(CylinderTest, Hits) {
 	int i = 0;
 	for (Ray r : rays) {
 		std::vector<Intersection> intx;
-		cyl.intersect(r, intx);
+		cyl.localIntersect(r, intx);
 		EXPECT_EQ(intx.size(), 2);
 		EXPECT_TRUE(doubleEqual(intx[0].t, ts[i++]));
 		EXPECT_TRUE(doubleEqual(intx[1].t, ts[i++]));
@@ -72,7 +72,7 @@ TEST(CylinderTest, Truncated) {
 	int i = 0;
 	for (Ray r : rays) {
 		std::vector<Intersection> intx;
-		cyl.intersect(r, intx);
+		cyl.localIntersect(r, intx);
 		if (++i == 6) EXPECT_EQ(intx.size(), 2);
 		else EXPECT_EQ(intx.size(), 0);
 	}
@@ -97,7 +97,7 @@ TEST(CylinderTest, ClosedIntersect) {
 
 	for (Ray r : rays) {
 		std::vector<Intersection> intx;
-		cyl.intersect(r, intx);
+		cyl.localIntersect(r, intx);
 		EXPECT_EQ(intx.size(), 2);
 	}
 }
@@ -138,7 +138,7 @@ TEST(ConeTest, Intersect) {
 	int i = 0;
 	for (Ray r : rays) {
 		std::vector<Intersection> intx;
-		c.intersect(r, intx);
+		c.localIntersect(r, intx);
 		EXPECT_EQ(intx.size(), 2);
 		EXPECT_TRUE(doubleEqual(intx[0].t, ts[i++]));
 		EXPECT_TRUE(doubleEqual(intx[1].t, ts[i++]));
@@ -149,7 +149,7 @@ TEST(ConeTest, ParallelRay) {
 	Cone c;
 	Ray r(point(0, 0, -1), vec(0, 1, 1).normalize());
 	std::vector<Intersection> intx;
-	c.intersect(r, intx);
+	c.localIntersect(r, intx);
 	EXPECT_EQ(intx.size(), 1);
 	EXPECT_TRUE(doubleEqual(intx[0].t, 0.35355));
 }
@@ -168,7 +168,7 @@ TEST(ConeTest, Caps) {
 	int i = 0;
 	for (Ray r : rays) {
 		std::vector<Intersection> intx;
-		c.intersect(r, intx);
+		c.localIntersect(r, intx);
 		EXPECT_EQ(intx.size(), count[i++]);
 	}
 }

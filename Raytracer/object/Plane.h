@@ -8,7 +8,7 @@ public:
 	Plane(const Plane& p) : Object(p) {}
 	Object* heapObject() const; 
 
-	Tuple normalAt(Tuple) const;;
-	void intersect(const Ray&, std::vector<Intersection>& intx) const;
+	Tuple normalAt(Tuple) const;
+	void localIntersect(const Ray&, std::vector<Intersection>& intx) const;
 };
 

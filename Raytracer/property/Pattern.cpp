@@ -6,7 +6,8 @@
 
 Color Pattern::colorAtObject(const Tuple& point, const Object& object) const {
 
-	Tuple objectSpacePoint = object.transform().inverse() * point;
+	//Tuple objectSpacePoint = object.transform().inverse() * point;
+	Tuple objectSpacePoint = worldToObject(point, object);
 	Tuple patternSpacePoint = transform_.inverse() * objectSpacePoint;
 	return colorAt(patternSpacePoint);
 

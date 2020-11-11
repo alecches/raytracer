@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="object\Group.cpp" />
     <ClCompile Include="object\Cone.cpp" />
     <ClCompile Include="object\Cylinder.cpp" />
     <ClCompile Include="object\Cube.cpp" />
@@ -149,6 +150,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="object\Group.h" />
     <ClInclude Include="object\Cone.h" />
     <ClInclude Include="object\Cylinder.h" />
     <ClInclude Include="object\Cube.h" />
