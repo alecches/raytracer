@@ -13,6 +13,7 @@
 #include "../Raytracer/struct/Matrix.h"
 #include "../Raytracer/struct/Tuple.h"
 #include "../Raytracer/struct/Util.h"
+#include "../Raytracer/struct/Bounds.h"
 
 #include "../Raytracer/world/Ray.h"
 #include "../Raytracer/world/World.h"

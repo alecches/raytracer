@@ -99,3 +99,21 @@ TEST(GroupTest, NormalOnObjectInGroup) {
 	Tuple norm = normalAt(point(1.7321, 1.1547, -5.5774), s);
 	EXPECT_TRUE(norm == vec(0.28570, 0.42854, -0.85716));
 }
+
+TEST(GroupTest, BoundingBox) {
+	Sphere s;
+	s.transform(translation(0, 0, 5)*scale(2, 2, 2));
+	Cube c;
+	c.transform(translation(-3, 1, 0));
+	Group g;
+	g.addChild(s);
+	g.addChild(c);
+	Bounds b = g.boundingBox();
+	Ray r1(point(0, 5, 0), vec(0, -1, 0));
+	Ray r2(point(0, 5, 8), vec(0, -1, 0));
+
+	EXPECT_TRUE(b.max == point(2, 2, 7));
+	EXPECT_TRUE(b.min == point(-4, -2, -1));
+	EXPECT_TRUE(b.intersect(r1));
+	EXPECT_FALSE(b.intersect(r2));
+}

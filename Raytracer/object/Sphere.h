@@ -16,6 +16,7 @@ public:
 	Sphere(): Object(){}
 	Sphere(const Sphere& s) : Object(s) {}
 
+	Bounds boundingBox() const;
 	Tuple normalAt(Tuple p) const;
 	void localIntersect(const Ray&, std::vector<Intersection>&) const;
 

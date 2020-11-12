@@ -5,6 +5,7 @@
 #include "object/Cube.h"
 #include "object/Cone.h"
 #include "object/Cylinder.h"
+#include "object/Group.h"
 #include "world/World.h"
 #include "render/Camera.h"
 #include "struct/Matrix.h"
@@ -34,7 +35,7 @@ int main() {
 	cyl.maximum(1);
 	cyl.minimum(0);
 	cyl.material(mCone);
-	cyl.transform(translation(0,0.5,1)*rotationX(PI/6));
+	cyl.transform(translation(3,0.5,1)*rotationX(PI/6));
 
 	Plane floor;
 	Material floorMat;
@@ -42,11 +43,15 @@ int main() {
 	floorMat.pattern(checkers);
 	floor.material(floorMat);
 
+	Group g;
+	g.addChild(cone);
+	g.addChild(cyl);
+
 	PointLight l(point(-8, 8, -8), Color(1, 1, 1));
 	w.addLight(l);
 	//w.addObject(s);
 	w.addObject(floor);
-	w.addObject(cone);
+	w.addObject(g);
 
 	Camera c(600, 300, PI / 3);
 	c.transform(view(point(0, 1.5, -5), point(0, 1, 0), vec(0, 1, 0)));

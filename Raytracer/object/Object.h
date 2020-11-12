@@ -2,6 +2,7 @@
 #include <vector>
 #include "../struct/Tuple.h"
 #include "../struct/Matrix.h"
+#include "../struct/Bounds.h"
 #include "../property/Material.h"
 #include "../struct/Intersection.h"
 #include "../world/Ray.h"
@@ -25,6 +26,7 @@ public:
 	const Object* parent() const { return parent_; }
 	void parent(const Object* p) { parent_ = p; }
 
+	virtual Bounds boundingBox() const = 0;
 	virtual Tuple normalAt(Tuple) const = 0;
 	virtual void localIntersect(const Ray&, std::vector<Intersection>&) const = 0;
 	virtual ~Object() {}

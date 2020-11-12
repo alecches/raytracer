@@ -15,6 +15,7 @@ public:
 	Cone() : closed{ false }, minimum_{ std::numeric_limits<double>::lowest() }, maximum_{ std::numeric_limits<double>::infinity() }, Object() {}
 	Cone(const Cone& s) : closed{ s.closed }, minimum_{ s.minimum() }, maximum_{ s.maximum() }, Object(s) {}
 
+	Bounds boundingBox() const;
 	Tuple normalAt(Tuple p) const;
 	void localIntersect(const Ray&, std::vector<Intersection>&) const;
 	double maximum() const { return maximum_; }

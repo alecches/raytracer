@@ -2,22 +2,12 @@
 #include <limits>
 #include "../struct/Util.h"
 
-double cubeMax(double a, double b, double c) {
-	double max = a;
-	if (b > max) max = b;
-	if (c > max) max = c;
-	return max;
-}
-
-double cubeMin(double a, double b, double c) {
-	double min = a;
-	if (b < min) min = b;
-	if (c < min) min = c;
-	return min;
+Bounds Cube::boundingBox() const {
+	return Bounds(point(-1, -1, -1), point(1, 1, 1));
 }
 
 Tuple Cube::normalAt(Tuple objectPoint) const {
-	double max = cubeMax(abs(objectPoint.x), abs(objectPoint.y), abs(objectPoint.z));
+	double max = doubleMax(abs(objectPoint.x), abs(objectPoint.y), abs(objectPoint.z));
 
 	if (max == abs(objectPoint.x)) return vec(objectPoint.x, 0, 0);
 	if (max == abs(objectPoint.y)) return vec(0, objectPoint.y, 0);
@@ -53,10 +43,10 @@ void Cube::localIntersect(const Ray& r, std::vector<Intersection>& intx) const {
 	std::pair<double, double> z = checkAxis(r.origin().z, r.direction().z);
 
 	// get the max of the min's
-	double tmin = cubeMax(x.first, y.first, z.first);
+	double tmin = doubleMax(x.first, y.first, z.first);
 	
 	// get the min of the max's
-	double tmax = cubeMin(x.second, y.second, z.second);
+	double tmax = doubleMin(x.second, y.second, z.second);
 
 	if (tmin > tmax) return;
 

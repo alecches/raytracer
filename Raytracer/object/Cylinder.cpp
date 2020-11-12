@@ -1,6 +1,10 @@
 #include "Cylinder.h"
 #include "../struct/Util.h"
 
+Bounds Cylinder::boundingBox() const {
+	return Bounds(point(-1, minimum_, -1), point(1, maximum_, 1));
+}
+
 
 Tuple Cylinder::normalAt(Tuple objectPoint) const {
 

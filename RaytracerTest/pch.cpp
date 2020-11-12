@@ -9,6 +9,7 @@
 #include "../Raytracer/struct/Matrix.cpp"
 #include "../Raytracer/struct/Tuple.cpp"
 #include "../Raytracer/struct/Util.cpp"
+#include "../Raytracer/struct/Bounds.cpp"
 
 #include "../Raytracer/world/Ray.cpp"
 #include "../Raytracer/world/World.cpp"

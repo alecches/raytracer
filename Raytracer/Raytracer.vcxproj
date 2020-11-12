@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="struct\Bounds.cpp" />
     <ClCompile Include="object\Group.cpp" />
     <ClCompile Include="object\Cone.cpp" />
     <ClCompile Include="object\Cylinder.cpp" />
@@ -150,6 +151,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="struct\Bounds.h" />
     <ClInclude Include="object\Group.h" />
     <ClInclude Include="object\Cone.h" />
     <ClInclude Include="object\Cylinder.h" />
