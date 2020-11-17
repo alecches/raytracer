@@ -5,7 +5,7 @@ Bounds Cone::boundingBox() const {
 	return Bounds(point(-1, minimum_, -1), point(1, maximum_, 1));
 }
 
-Tuple Cone::normalAt(Tuple objectPoint) const {
+Tuple Cone::normalAt(Tuple objectPoint, const Intersection& i) const {
 
 	double distance = pow(objectPoint.x, 2) + pow(objectPoint.z, 2);
 	if (distance < objectPoint.y && objectPoint.y >= (maximum_ - Epsilon)) return vec(0, 1, 0);

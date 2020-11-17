@@ -11,6 +11,7 @@
 #include "struct/Matrix.h"
 #include "struct/Util.h"
 #include "light/PointLight.h"
+#include "io/ObjParser.h"
 
 
 using namespace std;
@@ -19,38 +20,12 @@ using namespace std;
 int main() {
 
 	World w;
-
-	Cone cone;
-	cone.closed = true;
-	cone.minimum(-1);
-	cone.maximum(0);
-	Material mCone;
-	mCone.color(Color(0.9, 0.9, 0.4));
-	mCone.reflective(0.9);
-	cone.material(mCone);
-	cone.transform(translation(0, 1.2, 0)*rotationX(PI));
-
-	Cylinder cyl;
-	cyl.closed = true;
-	cyl.maximum(1);
-	cyl.minimum(0);
-	cyl.material(mCone);
-	cyl.transform(translation(3,0.5,1)*rotationX(PI/6));
-
-	Plane floor;
-	Material floorMat;
-	checkerPattern checkers(Color(0, 0, 0), Color(1, 1, 1));
-	floorMat.pattern(checkers);
-	floor.material(floorMat);
-
-	Group g;
-	g.addChild(cone);
-	g.addChild(cyl);
-
+	ObjParser parser;
+	parser.parse("../RaytracerTest/files/testCube.txt");
+	Group g = parser.objToGroup();
+	g.transform(rotationX(PI / 6) * rotationY(PI / 4));
 	PointLight l(point(-8, 8, -8), Color(1, 1, 1));
 	w.addLight(l);
-	//w.addObject(s);
-	w.addObject(floor);
 	w.addObject(g);
 
 	Camera c(600, 300, PI / 3);

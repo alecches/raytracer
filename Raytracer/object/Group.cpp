@@ -47,6 +47,12 @@ Bounds Group::boundingBox() const {
 	return Bounds(min, max);
 }
 
+Group::Group(const Group& g) :  box_(g.box_), Object(g) {
+	for (auto o : g.children_) {
+		addChild(*o);
+	}
+}
+
 Object* Group::heapObject() const {
 	/*
 	for (auto obj : children_) {
@@ -56,14 +62,17 @@ Object* Group::heapObject() const {
 	return obj; // is this enough?
 }
 
-void Group::addChild(Object& o) {
-	children_.push_back(&o); // maybe only heap an obj in World's call of addObj?
-	o.parent(this);
+void Group::addChild(const Object& o) {
+	Object* groupO = o.heapObject();
+	children_.push_back(groupO);
+	(*groupO).parent(this);
+	//children_.push_back(&o); // maybe only heap an obj in World's call of addObj?
+	//o.parent(this);
 	box_ = boundingBox(); // update the box -- this could be refactored to only test against the new object..
 	// set up new bounding box
 }
 
-Tuple Group::normalAt(Tuple) const {
+Tuple Group::normalAt(Tuple t, const Intersection& i) const {
 	std::exception e("logic_error"); 
 	std::cerr << "exception thrown: " << e.what() << "\n";
 	return vec(0, 0, 0);
@@ -77,6 +86,8 @@ void Group::localIntersect(const Ray& r, std::vector<Intersection>& intx) const 
 }
 
 Group::~Group() {
-	
+	for (auto obj : children_) {
+		delete obj;
+	}
 }
 

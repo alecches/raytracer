@@ -9,7 +9,7 @@ public:
 	Object* heapObject() const; 
 
 	Bounds boundingBox() const;
-	Tuple normalAt(Tuple) const;
+	Tuple normalAt(Tuple, const Intersection&) const;
 	void localIntersect(const Ray&, std::vector<Intersection>& intx) const;
 };
 

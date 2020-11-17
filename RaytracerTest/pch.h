@@ -32,6 +32,10 @@
 #include "../Raytracer/object/Cylinder.h"
 #include "../Raytracer/object/Cone.h"
 #include "../Raytracer/object/Group.h"
+#include "../Raytracer/object/Triangle.h"
+#include "../Raytracer/object/SmoothTriangle.h"
 
 #include "../Raytracer/light/Light.h"
 #include "../Raytracer/light/PointLight.h"
+
+#include "../Raytracer/io/ObjParser.h"

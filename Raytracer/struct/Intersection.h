@@ -6,10 +6,10 @@ class Object;
 
 struct Intersection
 {
-	double t;
+	double t, u, v;
 	const Object* object;
 
-	Intersection(double d, const Object* o) : t{ d }, object{ o } {}
+	Intersection(double d, const Object* o) : t{ d }, object{ o }, u{ -1 }, v{ -1 } {}
 	bool operator==(const Intersection&) const;
 	Intersection& operator=(const Intersection&);
 	void swap(Intersection&, Intersection&);
@@ -37,4 +37,5 @@ struct IntersectInfo {
 
 int hit(const std::vector<Intersection>&);
 double fresnel(const IntersectInfo&);
+Intersection intersectionWithUV(double, const Object*, double, double);
 //IntersectInfo prepareIntersection(Intersection, Ray);

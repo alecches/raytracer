@@ -12,7 +12,7 @@ public:
 	Cube(const Cube& s) : Object(s) {}
 
 	Bounds boundingBox() const;
-	Tuple normalAt(Tuple p) const;
+	Tuple normalAt(Tuple p, const Intersection&) const;
 	void localIntersect(const Ray&, std::vector<Intersection>&) const;
 
 	Object* heapObject() const { return new Cube(*this); }

@@ -2,6 +2,7 @@
 
 class PatternTest : public ::testing::Test {
 protected:
+
 	void SetUp() override {
 		black = Color(0, 0, 0);
 		white = Color(1, 1, 1);

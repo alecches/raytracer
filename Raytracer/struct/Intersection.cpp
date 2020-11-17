@@ -23,6 +23,12 @@ int hit(const std::vector<Intersection>& i) {
 
 }
 
+Intersection intersectionWithUV(double d, const Object* o, double u, double v) {
+	Intersection i(d, o);
+	i.u = u;
+	i.v = v;
+	return i;
+}
 
 Intersection& Intersection::operator=(const Intersection& i) {
 	Intersection iTemp(i.t, i.object);
@@ -55,7 +61,7 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) : t{ i.t }, object{ *i.objec
 
 	point = Tuple(r.position(t));
 	eyev = Tuple(-r.direction());
-	normalv = Tuple(normalAt(point, object));
+	normalv = Tuple(normalAt(point, object, i));
 	reflectv = r.direction().reflect(normalv);
 
 	if (normalv.dot(eyev) < 0) {
@@ -76,7 +82,7 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r, std::vector<Intersection>& i
 
 	point = Tuple(r.position(t));
 	eyev = Tuple(-r.direction());
-	normalv = Tuple(normalAt(point, object));
+	normalv = Tuple(normalAt(point, object, i));
 	reflectv = r.direction().reflect(normalv);
 
 	if (normalv.dot(eyev) < 0) {

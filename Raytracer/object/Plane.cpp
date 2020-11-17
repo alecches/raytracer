@@ -9,7 +9,7 @@ Bounds Plane::boundingBox() const {
 }
 
 
-Tuple Plane::normalAt(Tuple objectPoint) const {
+Tuple Plane::normalAt(Tuple objectPoint, const Intersection& i) const {
 	return vec(0,1,0);
 }
 

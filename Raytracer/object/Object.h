@@ -27,12 +27,12 @@ public:
 	void parent(const Object* p) { parent_ = p; }
 
 	virtual Bounds boundingBox() const = 0;
-	virtual Tuple normalAt(Tuple) const = 0;
+	virtual Tuple normalAt(Tuple, const Intersection&) const = 0;
 	virtual void localIntersect(const Ray&, std::vector<Intersection>&) const = 0;
 	virtual ~Object() {}
 };
 
-Tuple normalAt(const Tuple&, const Object&);
+Tuple normalAt(const Tuple&, const Object&, const Intersection&);
 void intersect(const Ray&, const Object&, std::vector<Intersection>&);
 Tuple worldToObject(Tuple, const Object&);
 Tuple normalToWorld(Tuple, const Object&);

@@ -28,6 +28,10 @@
 #include "../Raytracer/object/Cylinder.cpp"
 #include "../Raytracer/object/Cone.cpp"
 #include "../Raytracer/object/Group.cpp"
+#include "../Raytracer/object/Triangle.cpp"
+#include "../Raytracer/object/SmoothTriangle.cpp"
 
 #include "../Raytracer/light/Light.cpp"
 #include "../Raytracer/light/PointLight.cpp"
+
+#include "../Raytracer/io/ObjParser.cpp"

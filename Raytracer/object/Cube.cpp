@@ -6,7 +6,7 @@ Bounds Cube::boundingBox() const {
 	return Bounds(point(-1, -1, -1), point(1, 1, 1));
 }
 
-Tuple Cube::normalAt(Tuple objectPoint) const {
+Tuple Cube::normalAt(Tuple objectPoint, const Intersection& i) const {
 	double max = doubleMax(abs(objectPoint.x), abs(objectPoint.y), abs(objectPoint.z));
 
 	if (max == abs(objectPoint.x)) return vec(objectPoint.x, 0, 0);

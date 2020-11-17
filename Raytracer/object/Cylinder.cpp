@@ -6,7 +6,7 @@ Bounds Cylinder::boundingBox() const {
 }
 
 
-Tuple Cylinder::normalAt(Tuple objectPoint) const {
+Tuple Cylinder::normalAt(Tuple objectPoint, const Intersection& i) const {
 
 	double distance = pow(objectPoint.x, 2) + pow(objectPoint.z, 2);
 	if (distance < 1 && objectPoint.y >= (maximum_ - Epsilon)) return vec(0, 1, 0);

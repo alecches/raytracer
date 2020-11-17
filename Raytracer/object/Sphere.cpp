@@ -4,7 +4,7 @@ Bounds Sphere::boundingBox() const {
 	return Bounds(point(-1, -1, -1), point(1, 1, 1));
 }
 
-Tuple Sphere::normalAt(Tuple objectPoint) const {
+Tuple Sphere::normalAt(Tuple objectPoint, const Intersection& i) const {
 	return objectPoint - Tuple(0, 0, 0, 1);
 }
 

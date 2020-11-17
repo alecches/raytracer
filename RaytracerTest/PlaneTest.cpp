@@ -2,9 +2,9 @@
 
 TEST(PlaneTest, Normal) {
 	Plane p;
-	Tuple n1 = p.normalAt(point(0, 0, 0));
-	Tuple n2 = p.normalAt(point(10, 0, -10));
-	Tuple n3 = p.normalAt(point(-5, 0, 150));
+	Tuple n1 = p.normalAt(point(0, 0, 0), Intersection(0, &p));
+	Tuple n2 = p.normalAt(point(10, 0, -10), Intersection(0, &p));
+	Tuple n3 = p.normalAt(point(-5, 0, 150), Intersection(0, &p));
 
 	EXPECT_TRUE(n1 == vec(0, 1, 0));
 	EXPECT_TRUE(n2 == vec(0, 1, 0));

@@ -96,7 +96,7 @@ TEST(GroupTest, NormalOnObjectInGroup) {
 	Sphere s;
 	s.transform(translation(5, 0, 0));
 	g2.addChild(s);
-	Tuple norm = normalAt(point(1.7321, 1.1547, -5.5774), s);
+	Tuple norm = normalAt(point(1.7321, 1.1547, -5.5774), s, Intersection(0,&s));
 	EXPECT_TRUE(norm == vec(0.28570, 0.42854, -0.85716));
 }
 

@@ -124,6 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="io\ObjParser.cpp" />
+    <ClCompile Include="object\SmoothTriangle.cpp" />
     <ClCompile Include="struct\Bounds.cpp" />
     <ClCompile Include="object\Group.cpp" />
     <ClCompile Include="object\Cone.cpp" />
@@ -138,6 +140,7 @@
     <ClCompile Include="struct\Matrix.cpp" />
     <ClCompile Include="object\Plane.cpp" />
     <ClCompile Include="light\PointLight.cpp" />
+    <ClCompile Include="object\Triangle.cpp" />
     <ClCompile Include="world\Ray.cpp" />
     <ClCompile Include="object\Object.cpp" />
     <ClCompile Include="light\Light.cpp" />
@@ -151,6 +154,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="io\ObjParser.h" />
+    <ClInclude Include="object\SmoothTriangle.h" />
     <ClInclude Include="struct\Bounds.h" />
     <ClInclude Include="object\Group.h" />
     <ClInclude Include="object\Cone.h" />
@@ -166,6 +171,7 @@
     <ClInclude Include="property\Material.h" />
     <ClInclude Include="object\Plane.h" />
     <ClInclude Include="light\PointLight.h" />
+    <ClInclude Include="object\Triangle.h" />
     <ClInclude Include="world\Ray.h" />
     <ClInclude Include="object\Sphere.h" />
     <ClInclude Include="struct\Util.h" />

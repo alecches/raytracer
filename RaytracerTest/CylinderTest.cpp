@@ -46,7 +46,7 @@ TEST(CylinderTest, Normals) {
 	normals[3] = vec(-1, 0, 0);
 
 	for (int i = 0; i < 4;i++) {
-		EXPECT_TRUE(cyl.normalAt(points[i]) == normals[i]);
+		EXPECT_TRUE(cyl.normalAt(points[i], Intersection(0, &cyl)) == normals[i]);
 	}
 }
 
@@ -123,7 +123,7 @@ TEST(CylinderTest, ClosedNormals) {
 	normals[5] = vec(0, 1, 0);
 
 	for (int i = 0; i < 6;i++) {
-		EXPECT_TRUE(cyl.normalAt(points[i]) == normals[i]);
+		EXPECT_TRUE(cyl.normalAt(points[i], Intersection(0, &cyl)) == normals[i]);
 	}
 }
 
@@ -186,7 +186,7 @@ TEST(ConeTest, Normals) {
 
 
 	for (int i = 0; i < 3;i++) {
-		EXPECT_TRUE(c.normalAt(points[i]) == normals[i]);
+		EXPECT_TRUE(c.normalAt(points[i], Intersection(0, &c)) == normals[i]);
 	}
 }
 
