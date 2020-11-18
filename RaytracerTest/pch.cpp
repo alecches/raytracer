@@ -30,6 +30,7 @@
 #include "../Raytracer/object/Group.cpp"
 #include "../Raytracer/object/Triangle.cpp"
 #include "../Raytracer/object/SmoothTriangle.cpp"
+#include "../Raytracer/object/CSG.cpp"
 
 #include "../Raytracer/light/Light.cpp"
 #include "../Raytracer/light/PointLight.cpp"

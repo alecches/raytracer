@@ -34,6 +34,7 @@
 #include "../Raytracer/object/Group.h"
 #include "../Raytracer/object/Triangle.h"
 #include "../Raytracer/object/SmoothTriangle.h"
+#include "../Raytracer/object/CSG.h"
 
 #include "../Raytracer/light/Light.h"
 #include "../Raytracer/light/PointLight.h"

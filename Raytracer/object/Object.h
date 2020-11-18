@@ -26,6 +26,7 @@ public:
 	const Object* parent() const { return parent_; }
 	void parent(const Object* p) { parent_ = p; }
 
+	virtual bool includes(const Object* o) const { return o == this; }
 	virtual Bounds boundingBox() const = 0;
 	virtual Tuple normalAt(Tuple, const Intersection&) const = 0;
 	virtual void localIntersect(const Ray&, std::vector<Intersection>&) const = 0;

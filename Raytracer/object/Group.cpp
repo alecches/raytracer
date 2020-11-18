@@ -2,6 +2,13 @@
 #include <exception>
 #include <iostream>
 
+bool Group::includes(const Object* o) const { 
+	for (auto child : children_) {
+		if (child == o) return true;
+	}
+	return false;
+}
+
 Bounds Group::boundingBox() const {
 
 	Tuple min;

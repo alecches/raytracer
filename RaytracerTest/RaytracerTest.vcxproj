@@ -56,6 +56,7 @@
     <ClCompile Include="CubeTest.cpp" />
     <ClCompile Include="CylinderTest.cpp" />
     <ClCompile Include="GroupTest.cpp" />
+    <ClCompile Include="CsgTest.cpp" />
     <ClCompile Include="TriangleTest.cpp" />
     <ClCompile Include="TransformTest.cpp" />
     <ClCompile Include="TupleTest.cpp" />

@@ -1,6 +1,5 @@
 #pragma once
 #include "../object/Object.h"
-#include <list>
 
 class Group : public Object
 {
@@ -18,6 +17,7 @@ public:
 	const std::vector<Object*>& children() const { return children_; }
 	void addChild(const Object& o);
 
+	bool includes(const Object*) const override;
 	Bounds boundingBox() const;
 	Tuple normalAt(Tuple, const Intersection&) const;
 	void localIntersect(const Ray&, std::vector<Intersection>& intx) const;

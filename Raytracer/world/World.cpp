@@ -85,11 +85,8 @@ void intersect(const Ray& r, const World& w, std::vector<Intersection>& intx) {
 
 	for (auto o : objs) intersect(r, *o, intx);
 
-	std::vector<double> ints = { 6, 4, 5.5, 4.5 };
-	//std::sort(intx.begin(), intx.end(), [](Intersection a, Intersection b) { return a.t < b.t; });
-	std::sort(intx.begin(), intx.end(), compareT);
-
-	std::sort(ints.begin(), ints.end(), compareD);
+	std::sort(intx.begin(), intx.end(), [](Intersection a, Intersection b) { return a.t < b.t; });
+	//std::sort(intx.begin(), intx.end(), compareT);
 
 	return;
 }

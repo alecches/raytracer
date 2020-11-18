@@ -8,30 +8,27 @@
 void ObjParser::fanTriangulate(bool smooth, int group, std::vector<std::string>& face) {
 
 	if (!smooth) {
-
 		for (int i = 2; i < face.size() - 1; i++) {
 			Triangle tri(vertices_[stoi(face[1]) - 1], vertices_[stoi(face[i]) - 1], vertices_[stoi(face[i + 1]) - 1]);
 			faces_.push_back(tri);
 			groups_[group].second.addChild(tri);
 		}
-
 	}
 	else {
-
 		std::vector<int> verts;
 		std::vector<int> norms;
 
 		for (int i = 1; i < face.size(); i++) {
 			int len = face[i].size();
 			int firstSlash = face[i].find("/");
-			verts[i - 1] = stoi(face[i].substr(0, firstSlash));
-			int lastSlash = face[i].find("/");
-			norms[i - 1] = stoi(face[i].substr(lastSlash + 1, len - lastSlash - 1));
+			verts.push_back(stoi(face[i].substr(0, firstSlash)));
+			int lastSlash = face[i].rfind("/");
+			norms.push_back(stoi(face[i].substr(lastSlash + 1, len - lastSlash - 1)));
 		}
 
-		for (int i = 0; i < verts.size() - 1; i++) {
-			SmoothTriangle tri(vertices_[verts[0] - 1], vertices_[verts[i] - 1], vertices_[verts[i + 1] - 1],
-				normals_[norms[0] - 1], normals_[norms[i] - 1], normals_[norms[i + 1] - 1]);
+		for (int i = 0; i < verts.size() - 2; i++) {
+			SmoothTriangle tri(vertices_[verts[i] - 1], vertices_[verts[i + 1] - 1], vertices_[verts[i + 2] - 1],
+				normals_[norms[i] - 1], normals_[norms[i + 1] - 1], normals_[norms[i + 2] - 1]);
 			smoothFaces_.push_back(tri);
 			groups_[group].second.addChild(tri);
 		}
@@ -40,41 +37,10 @@ void ObjParser::fanTriangulate(bool smooth, int group, std::vector<std::string>&
 
 void ObjParser::parseFace(int group, std::vector<std::string>& s) {
 
-	if (s[1].find("/") != std::string::npos) { // we have a smooth face
+	if (s[1].find("/") != std::string::npos) fanTriangulate(true, group, s);
+	else fanTriangulate(false, group, s);
+	return;
 
-		if (s.size() > 4) {
-			fanTriangulate(true, group, s);
-			return;
-		}
-
-		int verts[3];
-		int norms[3];
-
-		for (int i = 1; i < 4; i++) {
-			int len = s[i].size();
-			int firstSlash = s[i].find("/");
-			verts[i - 1] = stoi(s[i].substr(0,firstSlash));
-			int lastSlash = s[i].rfind("/");
-			norms[i - 1] = stoi(s[i].substr(lastSlash + 1, len - lastSlash - 1));
-		}
-
-		SmoothTriangle tri(vertices_[verts[0]-1], vertices_[verts[1]-1], vertices_[verts[2]-1], 
-			normals_[norms[0]-1], normals_[norms[1]-1], normals_[norms[2]-1]);
-		smoothFaces_.push_back(tri);
-		groups_[group].second.addChild(tri);
-
-	}
-	else { // we have a regular face
-		if (s.size() > 4) {
-			fanTriangulate(false, group, s);
-			return;
-		}
-
-		Triangle tri(vertices_[stoi(s[1]) - 1], vertices_[stoi(s[2]) - 1], vertices_[stoi(s[3]) - 1]);
-		faces_.push_back(tri);
-		groups_[group].second.addChild(tri);
-
-	}
 }
 
 void ObjParser::parse(std::string path) {
