@@ -76,8 +76,6 @@ bool inShadow(const World& w, const Tuple& point) {
 	return false;
 }
 
-bool compareT(const Intersection& a, const Intersection& b) { return a.t < b.t; }
-bool compareD(const double& a, const double& b) { return (a < b); }
 
 void intersect(const Ray& r, const World& w, std::vector<Intersection>& intx) {
 
@@ -86,7 +84,6 @@ void intersect(const Ray& r, const World& w, std::vector<Intersection>& intx) {
 	for (auto o : objs) intersect(r, *o, intx);
 
 	std::sort(intx.begin(), intx.end(), [](Intersection a, Intersection b) { return a.t < b.t; });
-	//std::sort(intx.begin(), intx.end(), compareT);
 
 	return;
 }
@@ -125,7 +122,7 @@ Color colorAt(const World& w, const Ray& r, int remainingDepth) {
 Color reflectedColor(const World& w, const IntersectInfo& iInf, int remainingDepth) {
 
 	if (remainingDepth < 1) return Color(0, 0, 0);
-	if (iInf.object.material().reflective() == 0) return Color(0, 0, 0); // . . . . not good
+	if (iInf.object.material().reflective() == 0) return Color(0, 0, 0); // code smell
 
 	Ray reflectedRay(iInf.overPoint, iInf.reflectv);
 	Color reflectedColor = colorAt(w, reflectedRay, --remainingDepth);

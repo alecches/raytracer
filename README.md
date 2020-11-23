@@ -8,14 +8,14 @@ I hope to implement a functional 3D renderer and to learn along the way. I will 
 
 ## What I have so far...
 
-At this point I have completed the book and I plan to implement more features of my own!
+At this point I have finished the book and I plan to implement more features of my own!
 
 Here is a sample of a simple scene of a reflective sphere with a hole in it that I rendered using only primitives:
 
-![simple scene](/images/example-1.ppm)
+![simple scene](/images/example-1.png)
 
 And here is a rendering of the Utah teapot, parsed from a .obj file:
 
 COMING SOON
 
-This is still a work-in-progress, I'm researching ways to optimize the renderer and expand what it does. Thanks for stopping by and taking a look :)
+This is still a work-in-progress, I'm researching ways to optimize the renderer and expand what it does. Thanks for stopping by and taking a look.  :)

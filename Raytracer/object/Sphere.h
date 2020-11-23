@@ -1,10 +1,4 @@
 #pragma once
-
-//class Matrix; some circular stuff was happening
-//#include "../struct/Tuple.h"
-//class Matrix;
-//Matrix identity();
-
 #include "../object/Object.h"
 
 class Sphere : public Object
