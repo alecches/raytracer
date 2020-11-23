@@ -12,7 +12,7 @@ At this point I have completed the book and I plan to implement more features of
 
 Here is a sample of a simple scene of a reflective sphere with a hole in it that I rendered using only primitives:
 
-![simple scene](../images/example-1.ppm)
+![simple scene](/images/example-1.ppm)
 
 And here is a rendering of the Utah teapot, parsed from a .obj file:
 
