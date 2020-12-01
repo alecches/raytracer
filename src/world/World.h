@@ -13,6 +13,9 @@ private:
 public:
 
 	World() :objs_{std::list<Object*>()}, lights_{std::list<Light*>()} {}
+	World(const World& w);
+	World& operator=(const World&);
+	void swap(World&, World&);
 
 	const std::list<Object*>& objects() const { return objs_; } // why pass around a whole list? maybe just provide access function instead // No... just pass a ref to the list
 	const std::list<Light*>& lights() const { return lights_; }

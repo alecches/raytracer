@@ -1,10 +1,10 @@
 # Raytracer Challenge
 
-Hi! This is my repo for my read-through of *The Ray Tracer Challenge* by Jamis Buck. I'll be writing a raytracer guided by this book. Throughout college I used whatever programming language a class called for, and never felt that I completely mastered any... I'm committing to using and learning more about C++ in this implementation (my main resource has been *A Tour of C++* by Bjarne Stroustrup) Hopefully the demands of the project will sharpen my modern C++ skills.
+Hi! This is my repo for my read-through of *The Ray Tracer Challenge* by Jamis Buck. I'll be writing a ray tracer guided by this book. I'm going to be primarily using C++ in this implementation (a resource I continually find myself reaching for is *A Tour of C++* by Bjarne Stroustrup), and for now I intend not to use any libraries besides std.
 
 ## Project Goals
 
-I hope to implement a functional 3D renderer and to learn along the way. I will expand my knowledge of modern C++, of tools like Googletest, and  of the foundational concepts of rendering: linear algebra, lighting, color, textures, etc.
+I hope to implement a functional 3D renderer and to learn along the way. I will expand my knowledge of modern C++, of tools like Googletest, and  of the fundamental concepts that 3D rendering involves: linear algebra, lighting, color, textures, etc.
 
 ## What I have so far...
 

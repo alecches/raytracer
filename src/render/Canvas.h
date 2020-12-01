@@ -11,6 +11,7 @@ private:
 public:
 
 	Canvas(int, int);
+	Canvas(const Canvas&);
 	~Canvas() { delete pixels; };
 	int width() const { return width_; }
 	int height() const { return height_; }

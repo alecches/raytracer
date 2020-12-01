@@ -30,7 +30,7 @@ public:
 	const std::vector<Tuple>& normals() const { return normals_; }
 	const std::vector<Triangle>& faces() const { return faces_; }
 	const std::vector<SmoothTriangle>& smoothFaces() const { return smoothFaces_; }
-	const std::vector<std::pair<std::string, Group>>& groups() const { return groups_; }
+	std::vector<std::pair<std::string, Group>>& groups() { return groups_; }
 	//void addVertex(Tuple t) { vertices_.push_back(t); }
 	//void addTriangle(Triangle t) { faces_.push_back(t); }
 	

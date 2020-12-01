@@ -15,162 +15,159 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="..\..\..\src\light\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\Camera.cpp">
+    <ClCompile Include="..\..\..\src\light\PointLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\Canvas.cpp">
+    <ClCompile Include="..\..\..\src\object\Cone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="struct\Intersection.cpp">
+    <ClCompile Include="..\..\..\src\object\CSG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="struct\Matrix.cpp">
+    <ClCompile Include="..\..\..\src\object\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="struct\Tuple.cpp">
+    <ClCompile Include="..\..\..\src\object\Cylinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Object.cpp">
+    <ClCompile Include="..\..\..\src\object\Group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Plane.cpp">
+    <ClCompile Include="..\..\..\src\object\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Sphere.cpp">
+    <ClCompile Include="..\..\..\src\object\Plane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="property\Material.cpp">
+    <ClCompile Include="..\..\..\src\object\SmoothTriangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="property\Pattern.cpp">
+    <ClCompile Include="..\..\..\src\object\Sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="property\Color.cpp">
+    <ClCompile Include="..\..\..\src\object\Triangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="world\World.cpp">
+    <ClCompile Include="..\..\..\src\property\Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="world\Ray.cpp">
+    <ClCompile Include="..\..\..\src\property\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="light\Light.cpp">
+    <ClCompile Include="..\..\..\src\property\Pattern.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="light\PointLight.cpp">
+    <ClCompile Include="..\..\..\src\render\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="struct\Util.cpp">
+    <ClCompile Include="..\..\..\src\render\Canvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Cube.cpp">
+    <ClCompile Include="..\..\..\src\struct\Bounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Cylinder.cpp">
+    <ClCompile Include="..\..\..\src\struct\Intersection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Cone.cpp">
+    <ClCompile Include="..\..\..\src\struct\Matrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Group.cpp">
+    <ClCompile Include="..\..\..\src\struct\Tuple.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="struct\Bounds.cpp">
+    <ClCompile Include="..\..\..\src\struct\Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\Triangle.cpp">
+    <ClCompile Include="..\..\..\src\world\Ray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="io\ObjParser.cpp">
+    <ClCompile Include="..\..\..\src\world\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\SmoothTriangle.cpp">
+    <ClCompile Include="..\..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object\CSG.cpp">
+    <ClCompile Include="..\..\..\src\io\ObjParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="render\Camera.h">
+    <ClInclude Include="..\..\..\src\light\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render\Canvas.h">
+    <ClInclude Include="..\..\..\src\light\PointLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="struct\Intersection.h">
+    <ClInclude Include="..\..\..\src\object\Cone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="struct\Matrix.h">
+    <ClInclude Include="..\..\..\src\object\CSG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="struct\Tuple.h">
+    <ClInclude Include="..\..\..\src\object\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Object.h">
+    <ClInclude Include="..\..\..\src\object\Cylinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Plane.h">
+    <ClInclude Include="..\..\..\src\object\Group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Sphere.h">
+    <ClInclude Include="..\..\..\src\object\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="property\Material.h">
+    <ClInclude Include="..\..\..\src\object\Plane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="property\Pattern.h">
+    <ClInclude Include="..\..\..\src\object\SmoothTriangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="property\Color.h">
+    <ClInclude Include="..\..\..\src\object\Sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="world\World.h">
+    <ClInclude Include="..\..\..\src\object\Triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="world\Ray.h">
+    <ClInclude Include="..\..\..\src\property\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="light\Light.h">
+    <ClInclude Include="..\..\..\src\property\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="light\PointLight.h">
+    <ClInclude Include="..\..\..\src\property\Pattern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="struct\Util.h">
+    <ClInclude Include="..\..\..\src\render\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Cube.h">
+    <ClInclude Include="..\..\..\src\render\Canvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Cylinder.h">
+    <ClInclude Include="..\..\..\src\struct\Bounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Cone.h">
+    <ClInclude Include="..\..\..\src\struct\Intersection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Group.h">
+    <ClInclude Include="..\..\..\src\struct\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="struct\Bounds.h">
+    <ClInclude Include="..\..\..\src\struct\Tuple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\Triangle.h">
+    <ClInclude Include="..\..\..\src\struct\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="io\ObjParser.h">
+    <ClInclude Include="..\..\..\src\world\Ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\SmoothTriangle.h">
+    <ClInclude Include="..\..\..\src\world\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="object\CSG.h">
+    <ClInclude Include="..\..\..\src\io\ObjParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

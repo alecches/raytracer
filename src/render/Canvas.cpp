@@ -14,6 +14,20 @@ Canvas::Canvas(int a, int b) {
 	}
 }
 
+Canvas::Canvas(const Canvas& c) {
+
+	width_ = c.width_;
+	height_ = c.height_;
+
+	pixels = new Color[width_ * height_];
+	for (int i = 0; i < height_; i++) {
+		for (int j = 0; j < width_; j++) {
+			pixels[i * width_ + j] = Color(c.pixels[i * width_ + j]);
+		}
+	}
+
+}
+
 Color Canvas::getPixel(int x, int y) {
 	return pixels[x + y * width_];
 }

@@ -229,5 +229,7 @@ TEST(SceneTest, RenderWorld) {
 	c.transform(view(from, to, up));
 
 	Canvas image = render(c, w);
-	EXPECT_TRUE(image.getPixel(5, 5) == Color(0.38066, 0.47583, 0.2855));
+	Color result = image.getPixel(5, 5);
+
+	EXPECT_TRUE(result == Color(0.38066, 0.47583, 0.2855));
 }

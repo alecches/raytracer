@@ -27,8 +27,8 @@ void ObjParser::fanTriangulate(bool smooth, int group, std::vector<std::string>&
 		}
 
 		for (int i = 0; i < verts.size() - 2; i++) {
-			SmoothTriangle tri(vertices_[verts[i] - 1], vertices_[verts[i + 1] - 1], vertices_[verts[i + 2] - 1],
-				normals_[norms[i] - 1], normals_[norms[i + 1] - 1], normals_[norms[i + 2] - 1]);
+			SmoothTriangle tri(vertices_[verts[0] - 1], vertices_[verts[i + 1] - 1], vertices_[verts[i + 2] - 1],
+				normals_[norms[0] - 1], normals_[norms[i + 1] - 1], normals_[norms[i + 2] - 1]);
 			smoothFaces_.push_back(tri);
 			groups_[group].second.addChild(tri);
 		}
@@ -48,7 +48,7 @@ void ObjParser::parse(std::string path) {
 	std::ifstream ifs(path);
 	if (!ifs) std::cerr << "Unable to open file: " << path << "\n";
 
-	std::regex pattern(R"~(f((\s+\d+){3,}|(\s+\d+/\d+/\d+){3,}|(\s+\d+//\d+){3,})|(v|vn)(\s+\-?\d+\.?\d*){3}|g\s+\w+)~", 
+	std::regex pattern(R"~(f((\s+\d+){3,}\s*|(\s+\d+/\d+/\d+){3,}\s*|(\s+\d+//\d+){3,}\s*)|(v|vn)(\s+\-?\d+\.?\d*){3}\s*|g\s+\w+\s*)~", 
 		std::regex_constants::ECMAScript);
 
 	std::string line;

@@ -26,6 +26,30 @@ World defaultWorld() {
 
 }
 
+World::World(const World& w) {
+
+	for (auto o : w.objects()) {
+		objs_.push_back(o->heapObject());
+	}
+
+	for (auto l : w.lights()) {
+		lights_.push_back(l->heapLight());
+	}
+	
+}
+
+World& World::operator=(const World& w) {
+	World tempWorld(w);
+	swap(*this, tempWorld);
+	return *this;
+}
+
+
+void World::swap(World& first, World& second) {
+	std::swap(first.lights_, second.lights_);
+	std::swap(first.objs_, second.objs_);
+}
+
 World::~World() {
 	for (auto o : objs_) {
 		delete o;
