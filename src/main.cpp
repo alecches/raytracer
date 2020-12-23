@@ -22,25 +22,34 @@ int main() {
 
 	World w;
 
-	ObjParser parser;
-	parser.parse("../RaytracerTest/files/teapotSmooth.obj");
-	Object* group = &(parser.groups()[1].second);
-	group->transform(rotationX(-PI/2));
-	w.addObject(*group);
-	PointLight pl(point(-7, 10, 2), Color(1, 1, 1));
+	ObjParser parser; // true means we're using bounding boxes (THE LATEST FEATURE!!!)
+	// idea: lets just make bounding boxes a utility function in parser.h in the future
+
+	//parser.parse("../../../test/files/icosphere.obj");
+	parser.parse("../../../test/files/testCube.txt");
+
+	/*
+	for (auto g : parser.boundedGroups()) {
+		g.transform(rotationX(-PI / 2));
+		w.addObject(g);
+	}
+	*/
+
+	w.addObject(parser.groups()[0].second);
+	w.objects().front()->boundingBox();
+
+	PointLight pl(point(-4, 5, -6), Color(1, 1, 1));
 	w.addLight(pl);
 
 
-	// populate scene
-
-	Camera c(200, 100, PI / 3);
-	c.transform(view(point(2, 3, -25), point(0, 2, 0), vec(0, 1, 0)));
+	Camera c(50, 50, PI / 6);
+	c.transform(view(point(2, 3, -3), point(0, 0, 0), vec(0, 1, 0)));
 	//c.transform(view(point(2, 5, -15), point(0, 3, 0), vec(0, 1, 0)));
 
 	Canvas image = render(c, w);
 
 	ofstream renderFile;
-	renderFile.open("../images/example-2.ppm");
+	renderFile.open("../../../images/example-3.ppm");
 	renderFile << image.toPPM();
 	renderFile.close();
 

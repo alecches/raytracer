@@ -2,6 +2,7 @@
 #include "../struct/Util.h"
 
 Bounds Triangle::boundingBox() const {
+
 	Tuple min = point(doubleMin(p1_.x, p2_.x, p3_.x), doubleMin(p1_.y, p2_.y, p3_.y), doubleMin(p1_.z,p2_.z,p3_.z));
 	Tuple max = point(doubleMax(p1_.x, p2_.x, p3_.x), doubleMax(p1_.y, p2_.y, p3_.y), doubleMax(p1_.z,p2_.z,p3_.z));
 

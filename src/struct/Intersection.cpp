@@ -64,7 +64,7 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r) : t{ i.t }, object{ *i.objec
 	normalv = Tuple(normalAt(point, object, i));
 	reflectv = r.direction().reflect(normalv);
 
-	if (normalv.dot(eyev) < 0) {
+	if (normalv.dot(eyev) < 0) { // we are entering this block when we shouldnt with smooth tris (was < )
 		inside = true;
 		normalv = -normalv;
 	}
@@ -93,6 +93,9 @@ IntersectInfo::IntersectInfo(Intersection i, Ray r, std::vector<Intersection>& i
 
 	overPoint = point + normalv * Epsilon;
 	underPoint = point - normalv * Epsilon;
+
+	n1 = 1;
+	n2 = object.material().refractiveIndex();
 
 	std::list<const Object*> within;
 	for (auto ix : intx) {

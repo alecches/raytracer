@@ -11,6 +11,8 @@ bool Group::includes(const Object* o) const {
 
 Bounds Group::boundingBox() const {
 
+	if (bounded_) return box_;
+
 	Tuple min;
 	Tuple max;
 	int child = 0;
@@ -54,7 +56,7 @@ Bounds Group::boundingBox() const {
 	return Bounds(min, max);
 }
 
-Group::Group(const Group& g) :  box_(g.box_), Object(g) {
+Group::Group(const Group& g) : box_(g.box_), bounded_{ g.bounded_ }, Object(g) {
 	for (auto o : g.children_) {
 		addChild(*o);
 	}
@@ -75,7 +77,9 @@ void Group::addChild(const Object& o) {
 	(*groupO).parent(this);
 	//children_.push_back(&o); // maybe only heap an obj in World's call of addObj?
 	//o.parent(this);
-	box_ = boundingBox(); // update the box -- this could be refactored to only test against the new object..
+
+	//box_ = boundingBox(); // update the box -- this could be refactored to only test against the new object..
+
 	// set up new bounding box
 }
 
@@ -86,7 +90,8 @@ Tuple Group::normalAt(Tuple t, const Intersection& i) const {
 }
 
 void Group::localIntersect(const Ray& r, std::vector<Intersection>& intx) const {
-	if (!box_.intersect(r)) return;
+	//if (!box_.intersect(r)) return;
+	if (!boundingBox().intersect(r)) return;
 	for (auto child : children_) {
 		intersect(r, *child, intx);
 	}

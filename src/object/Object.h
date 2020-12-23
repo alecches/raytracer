@@ -15,8 +15,8 @@ protected:
 
 public:
 
-	Object() : transform_{ Matrix(identity()) }, mat_{ Material() }, parent_{nullptr} {}
-	Object(const Object& o) : transform_{ o.transform() }, mat_{ o.material() }, parent_{ nullptr }  {}
+	Object() : transform_{ Matrix(identity()) }, mat_{ Material() }, parent_{ nullptr } {}
+	Object(const Object& o) : transform_{ o.transform() }, mat_{ o.material() }, parent_{ nullptr } {}
 	virtual Object* heapObject() const = 0;
 
 	Matrix transform() const { return transform_; }

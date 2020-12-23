@@ -43,6 +43,22 @@ void ObjParser::parseFace(int group, std::vector<std::string>& s) {
 
 }
 
+bool containsPoint(const Tuple& point, const Bounds& bounds) {
+
+	Tuple bMin = bounds.min;
+	Tuple bMax = bounds.max;
+
+	if (point.x < bMin.x) return false;
+	if (point.x > bMax.x) return false;
+	if (point.y < bMin.y) return false;
+	if (point.y > bMax.y) return false;
+	if (point.z < bMin.z) return false;
+	if (point.z > bMax.z) return false;
+	
+	return true;
+	
+}
+
 void ObjParser::parse(std::string path) {
 
 	std::ifstream ifs(path);
@@ -52,8 +68,14 @@ void ObjParser::parse(std::string path) {
 		std::regex_constants::ECMAScript);
 
 	std::string line;
+
 	groups_.push_back(std::pair<std::string, Group>("DefaultGroup", Group()));
 	int currentGroup = 0;
+
+	Tuple min, max;
+	bool bounded;
+	bounded = true;
+
 	while (std::getline(ifs, line)) {
 
 		if (std::regex_match(line, pattern)) {
@@ -67,6 +89,15 @@ void ObjParser::parse(std::string path) {
 			if (words[0] == "v") {
 				Tuple vert = point(stod(words[1]), stod(words[2]), stod(words[3]));
 				vertices_.push_back(vert);
+
+				// manage the overall bounding box
+				if (vert.x < min.x) min.x = vert.x;
+				else if (vert.x > max.x) max.x = vert.x;
+				if (vert.y < min.y) min.y = vert.y;
+				else if (vert.y > max.y) max.y = vert.y;
+				if (vert.z < min.z) min.z = vert.z;
+				else if (vert.z > max.z) max.z = vert.z;
+
 			}
 			else if (words[0] == "vn") {
 				Tuple norm = vec(stod(words[1]), stod(words[2]), stod(words[3]));
@@ -83,6 +114,76 @@ void ObjParser::parse(std::string path) {
 		else ignoredLines_++;
 
 	}
+
+	// bounding boxes allocation
+	if (bounded_) {
+
+		// by default we will cut up the box into eighths
+		int xCuts = 5;
+		int yCuts = 5;
+		int zCuts = 5;
+
+		Tuple diagonal = max - min;
+		/*
+		Tuple center = diagonal * 0.5 + min;
+		Tuple diagonalX = vec(diagonal.x, 0, 0);
+		Tuple diagonalY = vec(0, diagonal.y, 0);
+		Tuple diagonalZ = vec(0, 0, diagonal.z);
+		*/
+
+		for (int x = 0; x <= xCuts; x++){
+			double xMin = min.x + diagonal.x * ((1.0 / (xCuts + 1)) * x);
+			double xMax = min.x + diagonal.x * ((1.0 / (xCuts + 1)) * (x + 1));
+
+			for (int y = 0; y <= yCuts; y++) {
+				double yMin = min.y + diagonal.y * ((1.0 / (yCuts + 1)) * y);
+				double yMax = min.y + diagonal.y * ((1.0 / (yCuts + 1)) * (y + 1));
+
+				for (int z = 0; z <= zCuts; z++) {
+					double zMin = min.z + diagonal.z * ((1.0 / (zCuts + 1)) * z);
+					double zMax = min.z + diagonal.z * ((1.0 / (zCuts + 1)) * (z + 1));
+
+					Group g;
+					Tuple groupMin = point(xMin, yMin, zMin);
+					Tuple groupMax = point(xMax, yMax, zMax);
+					g.boundingBox(Bounds(groupMin, groupMax));
+					g.setBounds(); // could consolidate with boundingBox(box)
+
+					boundedGroups_.push_back(g);
+				}
+			}
+		}
+
+		for (auto tri : smoothFaces_) {
+
+			for (auto& grp : boundedGroups_) {
+
+				Bounds grpBox = grp.boundingBox();
+	
+				if (containsPoint(tri.p1(), grpBox)) grp.addChild(tri);
+				else if (containsPoint(tri.p2(), grpBox)) grp.addChild(tri);
+				else if (containsPoint(tri.p3(), grpBox)) grp.addChild(tri);
+				// for now, triangles can be members of multiple boxes, to assure no intersections are missed
+			}
+		}
+
+		for (auto tri : faces_) {
+
+			for (auto grp : boundedGroups_) {
+
+				Bounds grpBox = grp.boundingBox();
+
+				if (containsPoint(tri.p1(), grpBox)) grp.addChild(tri);
+				else if (containsPoint(tri.p2(), grpBox)) grp.addChild(tri);
+				else if (containsPoint(tri.p3(), grpBox)) grp.addChild(tri);
+				// for now, triangles can be members of multiple boxes, to assure no intersections are missed
+				// this may cause duplicates...
+			}
+		}
+		
+	}
+
+	ifs.close();
 
 }
 
