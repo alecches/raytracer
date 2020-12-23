@@ -8,7 +8,7 @@ I hope to implement a functional 3D renderer and to learn along the way. I will 
 
 ## What I have so far...
 
-At this point I have finished the book and I plan to implement more features of my own!
+At this point I have almost finished the book and I plan to implement more features soon!
 
 Here is a sample of a simple scene of a reflective sphere with a hole in it that I rendered using only primitives:
 
