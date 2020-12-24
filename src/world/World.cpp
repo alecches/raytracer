@@ -107,7 +107,7 @@ void intersect(const Ray& r, const World& w, std::vector<Intersection>& intx) {
 
 	for (auto o : objs) intersect(r, *o, intx);
 
-	std::sort(intx.begin(), intx.end(), [](Intersection a, Intersection b) { return a.t < b.t; });
+	std::sort(intx.begin(), intx.end(), [](const Intersection & a, const Intersection & b) { return a.t < b.t; });
 
 	return;
 }

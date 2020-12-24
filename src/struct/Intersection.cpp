@@ -31,13 +31,16 @@ Intersection intersectionWithUV(double d, const Object* o, double u, double v) {
 }
 
 Intersection& Intersection::operator=(const Intersection& i) {
-	Intersection iTemp(i.t, i.object);
+
+	Intersection iTemp = intersectionWithUV(i.t, i.object, i.u, i.v);
 	swap(*this, iTemp);
 	return *this;
 }
 
 void Intersection::swap(Intersection& first, Intersection& second) {
 	std::swap(first.t, second.t);
+	std::swap(first.u, second.u);
+	std::swap(first.v, second.v);
 	std::swap(first.object, second.object);
 }
 
