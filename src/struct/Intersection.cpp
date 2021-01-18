@@ -3,6 +3,7 @@
 #include "../struct/Util.h"
 #include "../object/Object.h"
 #include <list>
+#include <algorithm>
 
 int hit(const std::vector<Intersection>& i) {
 

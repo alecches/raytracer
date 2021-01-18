@@ -1,5 +1,6 @@
 #include "../light/Light.h"
 #include "../object/Object.h"
+#include <cmath>
 
 Color lighting(const Material& mat, const Object& obj, const Light& light, const Tuple& position, const Tuple& eyev, const Tuple& normalv, bool inShadow) {
 

@@ -4,6 +4,7 @@
 #include "../struct/Tuple.h"
 #include <algorithm>
 #include <vector>
+#include <cmath>
 
 World defaultWorld() {
 

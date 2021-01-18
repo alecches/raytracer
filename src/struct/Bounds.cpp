@@ -1,5 +1,6 @@
 #include "Bounds.h"
 #include <vector>
+#include <limits>
 #include "../struct/Util.h"
 
 std::pair<double, double> checkBoxAxis(double min, double max, double origin, double direction) {

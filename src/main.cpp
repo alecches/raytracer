@@ -22,21 +22,12 @@ int main() {
 
 	World w;
 
-	ObjParser parser; // true means we're using bounding boxes (THE LATEST FEATURE!!!)
-	// idea: lets just make bounding boxes a utility function in parser.h in the future
-
-	parser.parse("../../../test/files/teapotSmooth.obj");
-
-	for (auto g : parser.boundedGroups()) {
-		g.transform(rotationX(-PI / 2));
-		w.addObject(g);
-	}
-
-	w.addObject(parser.groups()[0].second);
-	w.objects().front()->boundingBox();
+	Sphere s;
+	
 
 	PointLight pl(point(0, 0, -6), Color(1, 1, 1));
 	w.addLight(pl);
+	w.addObject(s);
 
 
 	Camera c(150, 150, PI / 6);
@@ -47,7 +38,7 @@ int main() {
 	Canvas image = render(c, w);
 
 	ofstream renderFile;
-	renderFile.open("../../../images/smoothTest.ppm");
+	renderFile.open("../images/aSphere.ppm");
 	renderFile << image.toPPM();
 	renderFile.close();
 

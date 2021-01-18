@@ -1,4 +1,5 @@
 #pragma once
+#undef minor // make is saying that there's a macro named "minor" is it in the OS?
 #include "../world/Ray.h"
 // sort of a mess, maybe use Eigen in the future?
 

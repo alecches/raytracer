@@ -2,6 +2,8 @@
 #include "../struct/Util.h"
 #include <cmath>
 
+#undef minor // minor is a macro, but this is an ugly solution
+
 /*Matrix::Matrix() {
 	row = 4;
 	col = 4;

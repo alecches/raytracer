@@ -84,7 +84,7 @@ void Group::addChild(const Object& o) {
 }
 
 Tuple Group::normalAt(Tuple t, const Intersection& i) const {
-	std::exception e("logic_error"); 
+	std::logic_error e("group has no normals..."); 
 	std::cerr << "exception thrown: " << e.what() << "\n";
 	return vec(0, 0, 0);
 }

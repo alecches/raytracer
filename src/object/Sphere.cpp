@@ -1,4 +1,5 @@
 #include "../object/Sphere.h"
+#include <cmath>
 
 Bounds Sphere::boundingBox() const {
 	return Bounds(point(-1, -1, -1), point(1, 1, 1));

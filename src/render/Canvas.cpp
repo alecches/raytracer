@@ -1,5 +1,6 @@
 #include "Canvas.h"
 #include <algorithm>
+#include <cmath>
 
 Canvas::Canvas(int a, int b) {
 
