@@ -64,7 +64,7 @@ void ObjParser::parse(std::string path) {
 	std::ifstream ifs(path);
 	if (!ifs) std::cerr << "Unable to open file: " << path << "\n";
 
-	std::regex pattern(R"~(f((\s+\d+){3,}\s*|(\s+\d+/\d+/\d+){3,}\s*|(\s+\d+//\d+){3,}\s*)|(v|vn)(\s+\-?\d+\.?\d*){3}\s*|g\s+\w+\s*)~", 
+	std::regex pattern(R"~(f((\s+\d+){3,}\s*|(\s+\d+/\d+/\d+){3,}\s*|(\s+\d+//\d+){3,}\s*)|(v|vn)(\s+\-?\d+\.?\d*\e?\-?\d*){3}\s*|g\s+\w+\s*)~", 
 		std::regex_constants::ECMAScript);
 
 	std::string line;
@@ -73,8 +73,6 @@ void ObjParser::parse(std::string path) {
 	int currentGroup = 0;
 
 	Tuple min, max;
-	bool bounded;
-	bounded = true;
 
 	while (std::getline(ifs, line)) {
 
@@ -119,9 +117,9 @@ void ObjParser::parse(std::string path) {
 	if (bounded_) {
 
 		// by default we will cut up the box into eighths
-		int xCuts = 5;
-		int yCuts = 5;
-		int zCuts = 5;
+		int xCuts = 4;
+		int yCuts = 2;
+		int zCuts = 0;
 
 		Tuple diagonal = max - min;
 		/*
@@ -130,6 +128,7 @@ void ObjParser::parse(std::string path) {
 		Tuple diagonalY = vec(0, diagonal.y, 0);
 		Tuple diagonalZ = vec(0, 0, diagonal.z);
 		*/
+		std::vector<Group> potentialGroups;
 
 		for (int x = 0; x <= xCuts; x++){
 			double xMin = min.x + diagonal.x * ((1.0 / (xCuts + 1)) * x);
@@ -149,14 +148,14 @@ void ObjParser::parse(std::string path) {
 					g.boundingBox(Bounds(groupMin, groupMax));
 					g.setBounds(); // could consolidate with boundingBox(box)
 
-					boundedGroups_.push_back(g);
+					potentialGroups.push_back(g);
 				}
 			}
 		}
 
 		for (auto tri : smoothFaces_) {
 
-			for (auto& grp : boundedGroups_) {
+			for (auto& grp : potentialGroups) {
 
 				Bounds grpBox = grp.boundingBox();
 	
@@ -169,7 +168,7 @@ void ObjParser::parse(std::string path) {
 
 		for (auto tri : faces_) {
 
-			for (auto grp : boundedGroups_) {
+			for (auto grp : potentialGroups) {
 
 				Bounds grpBox = grp.boundingBox();
 
@@ -179,6 +178,10 @@ void ObjParser::parse(std::string path) {
 				// for now, triangles can be members of multiple boxes, to assure no intersections are missed
 				// this may cause duplicates...
 			}
+		}
+
+		for (auto grp : potentialGroups) {
+			if (grp.children().size() > 0) boundedGroups_.push_back(grp);
 		}
 		
 	}

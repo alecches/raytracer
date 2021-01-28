@@ -23,7 +23,9 @@ public:
 	double pixelSize() const { return pixelSize_; }
 
 	Ray rayForPixel(int, int) const;
+	std::vector<Ray> raysForPixel(int, int) const;
 };
 
 Canvas render(const Camera&, const World&);
+Canvas renderWithAntialias(const Camera&, const World&);
 

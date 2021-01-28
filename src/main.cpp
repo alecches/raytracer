@@ -22,32 +22,27 @@ int main() {
 
 	World w;
 
-	ObjParser parser; // true means we're using bounding boxes (THE LATEST FEATURE!!!)
+	ObjParser parser(true); // true means we're using bounding boxes (THE LATEST FEATURE!!!)
 	// idea: lets just make bounding boxes a utility function in parser.h in the future
 
-	parser.parse("../../../test/files/teapotSmooth.obj");
+	parser.parse("../../../test/files/teapot.obj");
 
 	for (auto g : parser.boundedGroups()) {
-		g.transform(rotationX(-PI / 2));
+		g.transform(rotationY(PI / 2));
 		w.addObject(g);
 	}
 
-	w.addObject(parser.groups()[0].second);
-	w.objects().front()->boundingBox();
-
-	PointLight pl(point(0, 0, -6), Color(1, 1, 1));
+	PointLight pl(point(-1, 5, 5), Color(1, 1, 1));
 	w.addLight(pl);
 
 
-	Camera c(150, 150, PI / 6);
-	//c.transform(view(point(3, 3, -3), point(0, 0, 0), vec(0, 1, 0)));
-	c.transform(view(point(0, 0, -5), point(0, 0, 0), vec(0, 1, 0)));
-	//c.transform(view(point(2, 5, -15), point(0, 3, 0), vec(0, 1, 0)));
+	Camera c(300, 200, PI / 3);
+	c.transform(view(point(0, 2.25, 7), point(0, 1.5, 0), vec(0, 1, 0)));
 
-	Canvas image = render(c, w);
+	Canvas image = renderWithAntialias(c, w);
 
 	ofstream renderFile;
-	renderFile.open("../../../images/smoothTest.ppm");
+	renderFile.open("../../../images/smoothTest2.ppm");
 	renderFile << image.toPPM();
 	renderFile.close();
 
