@@ -16,6 +16,6 @@ Here is a sample of a simple scene of a reflective sphere with a hole in it that
 
 And here is a rendering of the Utah teapot, parsed from a .obj file:
 
-![teapot](/images/example-1.png)
+![teapot](/images/example-4.png)
 
 This is still a work-in-progress, I'm researching ways to optimize the renderer and expand what it does. Thanks for stopping by and taking a look.  :)
