@@ -2,6 +2,9 @@
 #include "../struct/Matrix.h"
 #include "../render/Canvas.h"
 #include "../world/World.h"
+#include "../struct/Tuple.h"
+#include "../property/Material.h"
+#include <cmath>
 
 class Camera
 {

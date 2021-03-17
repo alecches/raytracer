@@ -8,6 +8,7 @@ private:
 	Tuple direction_;
 public:
 
+	Ray() : origin_{ point(0, 0, 0) }, direction_{ vec(0, 0, 0) } {}
 	Ray(Tuple, Tuple);
 	Ray(Tuple*, Tuple*);
 	Tuple origin() const {return origin_;}

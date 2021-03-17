@@ -1,7 +1,4 @@
-#include "../render/Camera.h"
-#include "../struct/Tuple.h"
-#include "../property/Material.h"
-#include <cmath>
+#include "Camera.h"
 
 Camera::Camera(int hsize, int vsize, double fov) : hsize_{ hsize }, vsize_{ vsize }, fov_{ fov }, transform_{ Matrix(identity()) } {
 
